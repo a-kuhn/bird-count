@@ -2,6 +2,16 @@
   text-align: center;
 }
 
+.outline {
+  outline: 1px solid purple;
+}
+
+.thick-border {
+  border: 3px solid darkgray;
+  border-radius: 10px;
+  text-align: left;
+}
+
 .login-reg-btn {
   padding: 20px 30px;
   background-color: rgb(246, 235, 128);
