@@ -1,6 +1,8 @@
 import React from 'react';
 import {Link} from '@reach/router';
 
+import SearchForm from '../components/SearchForm';
+
 export default () => {
 
     return(
@@ -9,6 +11,7 @@ export default () => {
                 <Link to="/logout" className="logout-btn m-4">Logout</Link>
             </div>
             <p>Main Page!! this will hold the SearchForm, CreateChecklist, MyChecklists, and SingleChecklist components and views</p>
+            <SearchForm />
         </div>
     );
 }

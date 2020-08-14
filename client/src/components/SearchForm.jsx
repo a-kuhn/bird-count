@@ -7,7 +7,6 @@ export default () => {
   const [searchState, setSearchState] = useState("");
   const [searchCounty, setSearchCounty] = useState("");
   const [searchMunicipality, setSearchMunicipality] = useState("");
-  const [searchTaxon, setSearchTaxon] = useState("");
   const [searchSeason, setSearchSeason] = useState("");
 
   const handleSubmit = (e) => {
@@ -17,7 +16,6 @@ export default () => {
     searchState: ${searchState};\n
     searchCounty: ${searchCounty};\n
     searchMunicipality: ${searchMunicipality};\n
-    searchTaxon: ${searchTaxon};\n
     searchSeason: ${searchSeason};
     `
     console.log(`queryString: ${queryString}`);
@@ -27,15 +25,15 @@ export default () => {
     <div className="container mt-5 ">
       <form onSubmit={handleSubmit} className="form">
         <div className="row">
-          <div className="col-6 d-flex align-items-stretch ">
-            <fieldset className="border p-2 ">
-              <legend className="w-auto">location</legend>
+          <div className="col-6 outline">
+            <fieldset className="thick-border p-2">
+              <legend className="w-auto mx-3 px-1">location</legend>
               <input
                 onChange={(e) => setSearchLocation(e.target.value)}
                 value={searchLocation}
                 type="text"
                 className="px-2 mt-2 mx-auto form-control"
-                placeholder="birding location (park, campus, riverside, etc.)"
+                placeholder="birding location (park, campus, lake, etc.)"
               ></input>
               <input
                 onChange={(e) => setSearchMunicipality(e.target.value)}
@@ -66,21 +64,36 @@ export default () => {
               </div>
             </fieldset>
           </div>
-          <div className="col-6">
-            <fieldset className="border p-2">
-              <legend className="w-auto">season</legend>
-              <div class="form-check text-center mb-3">
-                <input
-                  onChange={(e) => setSearchSeason(e.target.value)}
-                  class="form-check-input"
-                  type="radio"
-                  name="searchSeason"
-                  id="thisSeason"
-                  value="thisSeason"
-                ></input>
-                <label class="form-check-label ml-2" for="thisSeason">
-                  this season (&#177; 2 months from today)
-                </label>
+          <div className="col-6 outline">
+            <fieldset className="thick-border p-2">
+              <legend className="w-auto mx-3 px-1">season</legend>
+              <div className="form-row px-4 justify-content-around">
+                <div class="form-check text-center mb-3">
+                    <input
+                    onChange={(e) => setSearchSeason(e.target.value)}
+                    class="form-check-input"
+                    type="radio"
+                    name="searchSeason"
+                    id="thisSeason"
+                    value="thisSeason"
+                    ></input>
+                    <label class="form-check-label ml-2" htmlFor="thisSeason">
+                    this season (&#177; 2 months from today)
+                    </label>
+                </div>
+                {/* <div class="form-check text-center mb-3 ml-3">
+                    <input
+                    onChange={(e) => setSearchSeason(e.target.value)}
+                    class="form-check-input"
+                    type="radio"
+                    name="searchSeason"
+                    id="allYear"
+                    value="allYear"
+                    ></input>
+                    <label class="form-check-label ml-2" htmlFor="allYear">
+                    all year
+                    </label>
+                </div> */}
               </div>
               <div className="form-row px-4">
                 <div className="form-group col-md-6">
@@ -93,7 +106,7 @@ export default () => {
                       id="springSeason"
                       value="springSeason"
                     ></input>
-                    <label class="form-check-label ml-2" for="springSeason">
+                    <label class="form-check-label ml-2" htmlFor="springSeason">
                       spring<br/>(March - May)
                     </label>
                   </div>
@@ -106,7 +119,7 @@ export default () => {
                       id="summerSeason"
                       value="summerSeason"
                     ></input>
-                    <label class="form-check-label ml-2" for="summerSeason">
+                    <label class="form-check-label ml-2" htmlFor="summerSeason">
                       summer<br/>(June - Aug)
                     </label>
                   </div>
@@ -121,7 +134,7 @@ export default () => {
                       id="winterSeason"
                       value="winterSeason"
                     ></input>
-                    <label class="form-check-label ml-2" for="winterSeason">
+                    <label class="form-check-label ml-2" htmlFor="winterSeason">
                       winter<br/>(Dec - Feb)
                     </label>
                   </div>
@@ -134,23 +147,12 @@ export default () => {
                       id="fallSeason"
                       value="fallSeason"
                     ></input>
-                    <label class="form-check-label ml-2" for="fallSeason">
+                    <label class="form-check-label ml-2" htmlFor="fallSeason">
                       fall<br/>(Sept - Nov)
                     </label>
                   </div>
                 </div>
               </div>
-            </fieldset>
-            <fieldset className="border p-2">
-              <legend className="w-auto">species</legend>
-              <label className="px-2 mx-2">Enter a name:</label>
-              <input
-                onChange={(e) => setSearchTaxon(e.target.value)}
-                value={searchTaxon}
-                type="text"
-                className="px-2 mt-2 mx-auto form-control"
-                placeholder="common or latin name will do!"
-              ></input>
             </fieldset>
           </div>
         </div>
