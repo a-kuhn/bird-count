@@ -1,3 +1,10 @@
+# Welcome to Bird Count!
+#### this app is built using React.js and Bootstrap libraries for the client
+#### node modules are not included in this repository
+#### I used `npx create-react-app` to start
+#### other dependencies for the front end are Bootstrap, Axios, and @Reach/Router
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
