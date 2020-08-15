@@ -11,13 +11,21 @@ export default () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const queryString = `
-    searchLocation: ${searchLocation};\n
-    searchState: ${searchState};\n
-    searchCounty: ${searchCounty};\n
-    searchMunicipality: ${searchMunicipality};\n
-    searchSeason: ${searchSeason};
-    `
+
+    // locale = string, replace spaces with %20
+    let locale = `${searchLocation}+${searchMunicipality}+${searchCounty}+county+${searchState}`
+    let lat;
+    let lng;
+
+    // d1 = must be observed on or after this date
+    // d2 = must be observed on or before this date
+    let currDate = new Date();
+    // current date string:
+    let d2 = `${currDate.getFullYear()}-${currDate.getMonth()+1}-${currDate.getDate()}`
+    // 50 years before current date:
+    let d1 = `${currDate.getFullYear()-50}-${currDate.getMonth()+1}-${currDate.getDate()}`;
+    // put it all together for iNaturalist API call:
+    const queryString = `?d1=${d1}&d2=${d2}&lat=${lat}&lng=${lng}&iconic_taxa=Aves&order=desc&order_by=observed_on&quality_grade=research&geoprivacy=open`
     console.log(`queryString: ${queryString}`);
   }
 
@@ -68,86 +76,86 @@ export default () => {
             <fieldset className="thick-border p-2">
               <legend className="w-auto mx-3 px-1">season</legend>
               <div className="form-row px-4 justify-content-around">
-                <div class="form-check text-center mb-3">
+                <div className="form-check text-center mb-3">
                     <input
                     onChange={(e) => setSearchSeason(e.target.value)}
-                    class="form-check-input"
+                    className="form-check-input"
                     type="radio"
                     name="searchSeason"
                     id="thisSeason"
                     value="thisSeason"
                     ></input>
-                    <label class="form-check-label ml-2" htmlFor="thisSeason">
+                    <label className="form-check-label ml-2" htmlFor="thisSeason">
                     this season (&#177; 2 months from today)
                     </label>
                 </div>
-                {/* <div class="form-check text-center mb-3 ml-3">
+                {/* <div className="form-check text-center mb-3 ml-3">
                     <input
                     onChange={(e) => setSearchSeason(e.target.value)}
-                    class="form-check-input"
+                    className="form-check-input"
                     type="radio"
                     name="searchSeason"
                     id="allYear"
                     value="allYear"
                     ></input>
-                    <label class="form-check-label ml-2" htmlFor="allYear">
+                    <label className="form-check-label ml-2" htmlFor="allYear">
                     all year
                     </label>
                 </div> */}
               </div>
               <div className="form-row px-4">
                 <div className="form-group col-md-6">
-                  <div class="form-check d-flex align-items-center">
+                  <div className="form-check d-flex align-items-center">
                     <input
                       onChange={(e) => setSearchSeason(e.target.value)}
-                      class="form-check-input"
+                      className="form-check-input"
                       type="radio"
                       name="searchSeason"
                       id="springSeason"
                       value="springSeason"
                     ></input>
-                    <label class="form-check-label ml-2" htmlFor="springSeason">
+                    <label className="form-check-label ml-2" htmlFor="springSeason">
                       spring<br/>(March - May)
                     </label>
                   </div>
-                  <div class="form-check mt-3 d-flex align-items-center">
+                  <div className="form-check mt-3 d-flex align-items-center">
                     <input
                       onChange={(e) => setSearchSeason(e.target.value)}
-                      class="form-check-input"
+                      className="form-check-input"
                       type="radio"
                       name="searchSeason"
                       id="summerSeason"
                       value="summerSeason"
                     ></input>
-                    <label class="form-check-label ml-2" htmlFor="summerSeason">
+                    <label className="form-check-label ml-2" htmlFor="summerSeason">
                       summer<br/>(June - Aug)
                     </label>
                   </div>
                 </div>
                 <div className="form-group col-md-6">
-                  <div class="form-check d-flex align-items-center">
+                  <div className="form-check d-flex align-items-center">
                     <input
                       onChange={(e) => setSearchSeason(e.target.value)}
-                      class="form-check-input"
+                      className="form-check-input"
                       type="radio"
                       name="searchSeason"
                       id="winterSeason"
                       value="winterSeason"
                     ></input>
-                    <label class="form-check-label ml-2" htmlFor="winterSeason">
+                    <label className="form-check-label ml-2" htmlFor="winterSeason">
                       winter<br/>(Dec - Feb)
                     </label>
                   </div>
-                  <div class="form-check mt-3 d-flex align-items-center">
+                  <div className="form-check mt-3 d-flex align-items-center">
                     <input
                       onChange={(e) => setSearchSeason(e.target.value)}
-                      class="form-check-input"
+                      className="form-check-input"
                       type="radio"
                       name="searchSeason"
                       id="fallSeason"
                       value="fallSeason"
                     ></input>
-                    <label class="form-check-label ml-2" htmlFor="fallSeason">
+                    <label className="form-check-label ml-2" htmlFor="fallSeason">
                       fall<br/>(Sept - Nov)
                     </label>
                   </div>
