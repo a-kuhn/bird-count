@@ -14,7 +14,7 @@ export default ({onNewLocale, onNewQueryString, onNewSeason}) => {
 
     // pass season up to Main.jsx
     onNewSeason(searchSeason);
-    
+
     // create locale string for Geocoder & send up to Main.jsx
     let locale = ``;
     if (searchLocation.length>0){locale += `${searchLocation}+`};
@@ -22,7 +22,7 @@ export default ({onNewLocale, onNewQueryString, onNewSeason}) => {
     if (searchCounty.length>0){locale += `${searchCounty}+County+`};
     if (searchState.length>0){locale += `${searchState}`};
     locale = encodeURIComponent(locale);
-    console.log(`locale: ${locale}`);
+    // console.log(`locale: ${locale}`);
     onNewLocale(locale);
 
     // create most of queryString for iNaturalist & send up to Main.jsx
@@ -35,7 +35,7 @@ export default ({onNewLocale, onNewQueryString, onNewSeason}) => {
     let d1 = `${currDate.getFullYear()-50}-${currDate.getMonth()+1}-${currDate.getDate()}`;
     // put it all together for iNaturalist API call:
     const queryString = `?d1=${d1}&d2=${d2}&iconic_taxa=Aves&order=desc&order_by=observed_on&quality_grade=research&geoprivacy=open`
-    console.log(`queryString: ${queryString}`);
+    // console.log(`queryString: ${queryString}`);
     onNewQueryString(queryString);
   }
 
