@@ -13,17 +13,17 @@ export default ({localeString, queryStringPartial, seasonFilter}) => {
 
     // make calls to Geocoder then iNaturalist
     useEffect(()=>{
-        axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${locale}&key=${process.env.GEOCODER_KEY}`)
+        axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${locale}&key=${process.env.REACT_APP_GEOCODER_KEY}`)
             .then(res=>{
                 queryString = `${queryStringPartial}&lat=${res.data.results[0].geometry.location.lat}&lng=${res.data.results[0].geometry.location.lng}`;
                 console.log(`queryStringFinal: ${queryString}`);
             })
-            .then(
-                axios.get(`https://api.inaturalist.org/v1/observations${queryString}`)
-                    .then(res=>setBirdList(res.data))
-                    .then(filterBirdList(birdList))
-                    .catch(err => setBirdListError(`an error occurred while trying to build your checklist`))
-            )
+            // .then(
+            //     axios.get(`https://api.inaturalist.org/v1/observations${queryString}`)
+            //         .then(res=>setBirdList(res.data))
+            //         .then(filterBirdList(birdList))
+            //         .catch(err => setBirdListError(`an error occurred while trying to build your checklist`))
+            // )
             .catch(err=>setGeocodeError(`something's wrong with the location you're using:\n${err}`))
     },[locale]);
 

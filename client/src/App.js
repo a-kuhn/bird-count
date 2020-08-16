@@ -6,6 +6,7 @@ import Main from './views/Main';
 import Logout from './views/Logout';
 
 function App() {
+
   return (
     <div className="App">
       <Router>
