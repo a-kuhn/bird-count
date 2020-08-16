@@ -20,7 +20,7 @@ export default ({localeString, queryStringPartial, seasonFilter}) => {
                 // queryString = `${queryStringPartial}&lat=${res.data.results[0].geometry.location.lat}&lng=${res.data.results[0].geometry.location.lng}`;
 
                 axios.get(`https://api.inaturalist.org/v1/observations${queryStringPartial}&lat=${res.data.results[0].geometry.location.lat}&lng=${res.data.results[0].geometry.location.lng}`)
-                    .then(res=>{setBirdList(res.data); console.log(res.data);})
+                    .then(res=>{setBirdList(res.data.results); console.log(res.data.results);})
                     // .then(filterBirdList(birdList))
                     .catch(err => setBirdListError(`an error occurred while trying to build your checklist:\n${err}`))
             })
@@ -44,7 +44,7 @@ export default ({localeString, queryStringPartial, seasonFilter}) => {
             <h4>unfiltered list:</h4>
             <ul>
                 { birdList.map((bird, idx)=>
-                <li key={idx}>{bird.id}</li>
+                <li key={idx}>{bird.species_guess}</li>
                 )}
             </ul>
 
