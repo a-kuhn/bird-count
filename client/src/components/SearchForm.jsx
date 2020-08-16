@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
 
-export default () => {
+export default ({onNewLocale, onNewQueryString, onNewSeason}) => {
   //to keep track of what is being typed into search form
   const [searchLocation, setSearchLocation] = useState("");
   const [searchState, setSearchState] = useState("");
@@ -12,7 +12,10 @@ export default () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // locale = string for Geocoder API request to get lat/long
+    // pass season up to Main.jsx
+    onNewSeason(searchSeason);
+    
+    // create locale string for Geocoder & send up to Main.jsx
     let locale = ``;
     if (searchLocation.length>0){locale += `${searchLocation}+`};
     if (searchMunicipality.length>0){locale += `${searchMunicipality}+`};
@@ -20,7 +23,9 @@ export default () => {
     if (searchState.length>0){locale += `${searchState}`};
     locale = encodeURIComponent(locale);
     console.log(`locale: ${locale}`);
+    onNewLocale(locale);
 
+    // create most of queryString for iNaturalist & send up to Main.jsx
     // d1 = must be observed on or after this date
     // d2 = must be observed on or before this date
     let currDate = new Date();
@@ -31,6 +36,7 @@ export default () => {
     // put it all together for iNaturalist API call:
     const queryString = `?d1=${d1}&d2=${d2}&iconic_taxa=Aves&order=desc&order_by=observed_on&quality_grade=research&geoprivacy=open`
     console.log(`queryString: ${queryString}`);
+    onNewQueryString(queryString);
   }
 
   return (
