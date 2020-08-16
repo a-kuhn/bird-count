@@ -7,27 +7,23 @@ export default ({localeString, queryStringPartial, seasonFilter}) => {
     let queryString;
     const season = seasonFilter;
     // create state for results of API calls:
-    const [lat, setLat] = useState('');
-    const [lng, setLng] = useState('');
     const [birdList, setBirdList] = useState([]);
     const [geocodeError, setGeocodeError] = useState('');
     const [birdListError, setBirdListError] = useState('');
 
     // make calls to Geocoder then iNaturalist
     useEffect(()=>{
-        axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${locale}&key=AIzaSyAOE1uOMORKE316bMjyhS3ZK0kP6HQpU5Q`)
-            .then(res => console.log(res.data.results[0].geometry.location.lat))
-            .then(res=>setLat((res.data.results[0].geometry.location.lat)))
-            .then(res=>setLng((res.data.results[0].geometry.location.lng)))
-            .then(console.log(`lat: ${lat}\nlng: ${lng}`))
-            .then(queryString = (`${queryStringPartial}&lat=${lat}&lng=${lng}`))
-            .then(console.log(`queryStringFinal: ${queryString}`))
-            // .then(
-            //     axios.get(`https://${queryString}`)
-            //         .then(res=>setBirdList(res.data))
-            //         .then(filterBirdList(birdList))
-            //         .catch(err => setBirdListError(`an error occurred while trying to build your checklist`))
-            // )
+        axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${locale}&key=${process.env.GEOCODER_KEY}`)
+            .then(res=>{
+                queryString = `${queryStringPartial}&lat=${res.data.results[0].geometry.location.lat}&lng=${res.data.results[0].geometry.location.lng}`;
+                console.log(`queryStringFinal: ${queryString}`);
+            })
+            .then(
+                axios.get(`https://api.inaturalist.org/v1/observations${queryString}`)
+                    .then(res=>setBirdList(res.data))
+                    .then(filterBirdList(birdList))
+                    .catch(err => setBirdListError(`an error occurred while trying to build your checklist`))
+            )
             .catch(err=>setGeocodeError(`something's wrong with the location you're using:\n${err}`))
     },[locale]);
 
