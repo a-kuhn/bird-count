@@ -12,10 +12,14 @@ export default () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // locale = string, replace spaces with %20
-    let locale = `${searchLocation}+${searchMunicipality}+${searchCounty}+county+${searchState}`
-    let lat;
-    let lng;
+    // locale = string for Geocoder API request to get lat/long
+    let locale = ``;
+    if (searchLocation.length>0){locale += `${searchLocation}+`};
+    if (searchMunicipality.length>0){locale += `${searchMunicipality}+`};
+    if (searchCounty.length>0){locale += `${searchCounty}+County+`};
+    if (searchState.length>0){locale += `${searchState}`};
+    locale = encodeURIComponent(locale);
+    console.log(`locale: ${locale}`);
 
     // d1 = must be observed on or after this date
     // d2 = must be observed on or before this date
@@ -25,7 +29,7 @@ export default () => {
     // 50 years before current date:
     let d1 = `${currDate.getFullYear()-50}-${currDate.getMonth()+1}-${currDate.getDate()}`;
     // put it all together for iNaturalist API call:
-    const queryString = `?d1=${d1}&d2=${d2}&lat=${lat}&lng=${lng}&iconic_taxa=Aves&order=desc&order_by=observed_on&quality_grade=research&geoprivacy=open`
+    const queryString = `?d1=${d1}&d2=${d2}&iconic_taxa=Aves&order=desc&order_by=observed_on&quality_grade=research&geoprivacy=open`
     console.log(`queryString: ${queryString}`);
   }
 
