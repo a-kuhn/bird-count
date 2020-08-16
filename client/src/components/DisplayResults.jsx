@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
 
-export default ({localeString, queryStringPartial}) => {
+export default ({localeString, queryStringPartial, seasonFilter}) => {
     // create variables for props passed down from Main.jsx 
     const locale = localeString;
     const queryString = queryStringPartial;
+    const season = seasonFilter;
     // create state for results of API calls:
     const [lat, setLat] = useState('');
     const [lng, setLng] = useState('');
@@ -19,6 +20,7 @@ export default ({localeString, queryStringPartial}) => {
             <h1>placeholder for bird call results</h1>
             <h4>locale: {locale}</h4>
             <h4>queryString: {queryString}</h4>
+            <h4>season: {season}</h4>
 
         </div>
     );

@@ -32,7 +32,7 @@ export default () => {
             <DisplayResults 
                 localeString={locale}
                 queryStringPartial={queryString}
-                season={season}
+                seasonFilter={season}
             />
         </div>
     );
