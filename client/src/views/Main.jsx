@@ -9,11 +9,13 @@ export default () => {
     const [locale, setLocale] = useState('');
     const [queryString, setQueryString] = useState('');
     const [season, setSeason] = useState('');
+    const [radius, setRadius] = useState('');
 
     // create setter functions to pass down to SearchForm
     const formSetLocale = (locale) => setLocale(locale);
     const formSetQueryString = (queryString) => setQueryString(queryString);
     const formSetSeason = (season) => setSeason(season);
+    const formSetRadius = (radius) => setRadius(radius);
 
     return(
         <div className="container">
@@ -26,6 +28,7 @@ export default () => {
                 onNewLocale={formSetLocale}
                 onNewQueryString={formSetQueryString}
                 onNewSeason={formSetSeason}
+                onNewRadius={formSetRadius}
             />
 
             {/* DisplayResults needs state passed down */}
@@ -33,6 +36,7 @@ export default () => {
                 localeString={locale}
                 queryStringPartial={queryString}
                 seasonFilter={season}
+                radiusFilter={radius}
             />
         </div>
     );
