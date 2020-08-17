@@ -13,13 +13,32 @@ export default ({localeString, queryStringPartial, seasonFilter}) => {
     
     // make calls to Geocoder then iNaturalist
     useEffect(()=>{
-
-        axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${locale}&key=${process.env.REACT_APP_GEOCODER_KEY}`)
+        axios.get(`https://maps.googleapis.com/maps/api/geocode/json`, {
+            params: {
+                address: locale,
+                key: process.env.REACT_APP_GEOCODER_KEY
+            }
+        })
             .then(res=>{
                 // use response to build request to iNaturalist:
-                // queryString = `${queryStringPartial}&lat=${res.data.results[0].geometry.location.lat}&lng=${res.data.results[0].geometry.location.lng}`;
-
-                axios.get(`https://api.inaturalist.org/v1/observations${queryStringPartial}&lat=${res.data.results[0].geometry.location.lat}&lng=${res.data.results[0].geometry.location.lng}`)
+                // create most of queryString for iNaturalist & send up to Main.jsx
+                let currDate = new Date();
+                axios.get(`https://api.inaturalist.org/v1/observations`, {
+                    params: {
+                        iconic_taxa: `Aves`,
+                        order: `desc`,
+                        order_by: `observed_on`,
+                        quality_grade: `research`,
+                        geoprivacy: `open`,
+                        // d1 = must be observed on or after this date
+                        d1: `${currDate.getFullYear()-50}-${currDate.getMonth()+1}-${currDate.getDate()}`,
+                        // d2 = must be observed on or before this date
+                        d2: `${currDate.getFullYear()}-${currDate.getMonth()+1}-${currDate.getDate()}`,
+                        // using geocoder response to fill lat & long
+                        lat: `${res.data.results[0].geometry.location.lat}`,
+                        lng: `${res.data.results[0].geometry.location.lng}`
+                    }
+                })
                     .then(res=>{setBirdList(res.data.results); console.log(res.data.results);})
                     // .then(filterBirdList(birdList))
                     .catch(err => setBirdListError(`an error occurred while trying to build your checklist:\n${err}`))

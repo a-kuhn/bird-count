@@ -22,21 +22,7 @@ export default ({onNewLocale, onNewQueryString, onNewSeason}) => {
     if (searchCounty.length>0){locale += `${searchCounty}+County+`};
     if (searchState.length>0){locale += `${searchState}`};
     locale = encodeURIComponent(locale);
-    // console.log(`locale: ${locale}`);
     onNewLocale(locale);
-
-    // create most of queryString for iNaturalist & send up to Main.jsx
-    // d1 = must be observed on or after this date
-    // d2 = must be observed on or before this date
-    let currDate = new Date();
-    // current date string:
-    let d2 = `${currDate.getFullYear()}-${currDate.getMonth()+1}-${currDate.getDate()}`
-    // 50 years before current date:
-    let d1 = `${currDate.getFullYear()-50}-${currDate.getMonth()+1}-${currDate.getDate()}`;
-    // put it all together for iNaturalist API call:
-    const queryString = `?d1=${d1}&d2=${d2}&iconic_taxa=Aves&order=desc&order_by=observed_on&quality_grade=research&geoprivacy=open`
-    // console.log(`queryString: ${queryString}`);
-    onNewQueryString(queryString);
   }
 
   return (
