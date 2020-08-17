@@ -8,6 +8,7 @@ export default ({onNewLocale, onNewQueryString, onNewSeason}) => {
   const [searchCounty, setSearchCounty] = useState("");
   const [searchMunicipality, setSearchMunicipality] = useState("");
   const [searchSeason, setSearchSeason] = useState("");
+  const [searchRadius, setSearchRadius] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -66,6 +67,13 @@ export default ({onNewLocale, onNewQueryString, onNewSeason}) => {
                   ></input>
                 </div>
               </div>
+              <input
+                onChange={(e) => setSearchRadius(e.target.value)}
+                value={searchRadius}
+                type="text"
+                className="px-2 mt-2 mx-auto form-control"
+                placeholder="search radius (km)"
+              ></input>
             </fieldset>
           </div>
           <div className="col-6 outline">
