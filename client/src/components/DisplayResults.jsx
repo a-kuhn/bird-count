@@ -62,7 +62,8 @@ export default ({localeString, seasonFilter}) => {
     // display filtered list of results
     return(
         <div>
-            {geocodeError.length>0 && <p>{geocodeError}</p>}
+            {geocodeError.length>0 && <p className="err-msg">{geocodeError}</p>}
+            {birdListError.length>0 && <p className="err-msg">{birdListError}</p>}
             <h1>placeholder for bird call results</h1>
             <h4>locale: {locale}</h4>
             <h4>queryString: {queryString}</h4>
