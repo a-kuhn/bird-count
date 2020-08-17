@@ -6,12 +6,12 @@ export default ({localeString, seasonFilter}) => {
     const locale = localeString;
     let queryString;
     let currMonth = new Date().getMonth();
-    let season;
-    if(seasonFilter === 'thisSeason'){season=[currMonth-2, currMonth-1, currMonth, currMonth+1, currMonth+2]}
-    if(seasonFilter === 'springSeason'){season=[2,3,4]}
-    if(seasonFilter === 'summerSeason'){season=[5,6,7]}
-    if(seasonFilter === 'fallSeason'){season=[8,9,10]}
-    if(seasonFilter === 'winterSeason'){season=[11,0,1]}
+    let season = seasonFilter;
+    if(season === 'thisSeason'){season=[currMonth-1, currMonth, currMonth+1]}
+    if(season === 'springSeason'){season=[2,3,4]}
+    if(season === 'summerSeason'){season=[5,6,7]}
+    if(season === 'fallSeason'){season=[8,9,10]}
+    if(season === 'winterSeason'){season=[11,0,1]}
     console.log(`season: ${season}`);
     // create state for results of API calls:
     const [birdList, setBirdList] = useState([]);

@@ -90,7 +90,7 @@ export default ({onNewLocale, onNewQueryString, onNewSeason}) => {
                     value="thisSeason"
                     ></input>
                     <label className="form-check-label ml-2" htmlFor="thisSeason">
-                    this season (&#177; 2 months from today)
+                    this season (&#177; 1 month from today)
                     </label>
                 </div>
                 {/* <div className="form-check text-center mb-3 ml-3">
