@@ -1,11 +1,18 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
-export default ({localeString, queryStringPartial, seasonFilter}) => {
+export default ({localeString, seasonFilter}) => {
     // create variables for props passed down from Main.jsx 
     const locale = localeString;
-    const season = seasonFilter;
     let queryString;
+    let currMonth = new Date().getMonth();
+    let season;
+    if(seasonFilter === 'thisSeason'){season=[currMonth-2, currMonth-1, currMonth, currMonth+1, currMonth+2]}
+    if(seasonFilter === 'springSeason'){season=[2,3,4]}
+    if(seasonFilter === 'summerSeason'){season=[5,6,7]}
+    if(seasonFilter === 'fallSeason'){season=[8,9,10]}
+    if(seasonFilter === 'winterSeason'){season=[11,0,1]}
+    console.log(`season: ${season}`);
     // create state for results of API calls:
     const [birdList, setBirdList] = useState([]);
     const [geocodeError, setGeocodeError] = useState('');
