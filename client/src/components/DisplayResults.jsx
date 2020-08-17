@@ -37,6 +37,7 @@ export default ({localeString, seasonFilter}) => {
                         order_by: `observed_on`,
                         quality_grade: `research`,
                         geoprivacy: `open`,
+                        month: `${season}`,
                         // d1 = must be observed on or after this date
                         d1: `${currDate.getFullYear()-50}-${currDate.getMonth()+1}-${currDate.getDate()}`,
                         // d2 = must be observed on or before this date
