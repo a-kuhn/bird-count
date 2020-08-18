@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
 export default ({localeString, seasonFilter}) => {
+    console.log(`loading results...\nprops: localeString=${localeString}, seasonFilter=${seasonFilter}`);
     // create variables for props passed down from Main.jsx 
     const locale = localeString;
     let currMonth = new Date().getMonth();
