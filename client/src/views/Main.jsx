@@ -13,7 +13,6 @@ export default () => {
 
     // create setter functions to pass down to SearchForm
     const formSetLocale = (locale) => setLocale(locale);
-    const formSetQueryString = (queryString) => setQueryString(queryString);
     const formSetSeason = (season) => setSeason(season);
     const formSetRadius = (radius) => setRadius(radius);
 
@@ -26,7 +25,6 @@ export default () => {
             {/* SearchForm needs setter functions passed down */}
             <SearchForm 
                 onNewLocale={formSetLocale}
-                onNewQueryString={formSetQueryString}
                 onNewSeason={formSetSeason}
                 onNewRadius={formSetRadius}
             />
