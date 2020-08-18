@@ -7,7 +7,6 @@ import DisplayResults from '../components/DisplayResults';
 export default () => {
     // create state that will be shared between SearchForm and DisplayResults
     const [locale, setLocale] = useState('');
-    const [queryString, setQueryString] = useState('');
     const [season, setSeason] = useState('');
     const [radius, setRadius] = useState('');
 
@@ -33,7 +32,6 @@ export default () => {
             {/* DisplayResults needs state passed down */}
                 <DisplayResults 
                     localeString={locale}
-                    queryStringPartial={queryString}
                     seasonFilter={season}
                     radiusFilter={radius}
                     path="/main/search/"
