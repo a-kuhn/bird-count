@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Link} from '@reach/router';
+import {Link, Router} from '@reach/router';
 
 import SearchForm from '../components/SearchForm';
 import DisplayResults from '../components/DisplayResults';
@@ -31,13 +31,16 @@ export default () => {
                 onNewRadius={formSetRadius}
             />
 
+            <Router >
             {/* DisplayResults needs state passed down */}
-            <DisplayResults 
-                localeString={locale}
-                queryStringPartial={queryString}
-                seasonFilter={season}
-                radiusFilter={radius}
-            />
+                <DisplayResults 
+                    localeString={locale}
+                    queryStringPartial={queryString}
+                    seasonFilter={season}
+                    radiusFilter={radius}
+                    path="/main/search/"
+                />
+            </Router>
         </div>
     );
 }

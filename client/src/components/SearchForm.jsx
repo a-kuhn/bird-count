@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
+import {navigate} from '@reach/router';
 
 
-export default ({onNewLocale, onNewQueryString, onNewSeason}) => {
+export default ({onNewLocale, onNewSeason}) => {
   //to keep track of what is being typed into search form
   const [searchLocation, setSearchLocation] = useState("");
   const [searchState, setSearchState] = useState("");
@@ -24,6 +25,8 @@ export default ({onNewLocale, onNewQueryString, onNewSeason}) => {
     if (searchState.length>0){locale += `${searchState}`};
     locale = encodeURIComponent(locale);
     onNewLocale(locale);
+
+    navigate('/main/search');
   }
 
   return (
