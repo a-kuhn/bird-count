@@ -26,6 +26,8 @@ export default ({onNewLocale, onNewSeason}) => {
     locale = encodeURIComponent(locale);
     onNewLocale(locale);
 
+    console.log(`sending searchSeason: ${searchSeason} and locale: ${locale} up to Main.jsx`);
+
     navigate('/main/search');
   }
 
