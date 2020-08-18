@@ -4,7 +4,6 @@ import axios from 'axios';
 export default ({localeString, seasonFilter}) => {
     // create variables for props passed down from Main.jsx 
     const locale = localeString;
-    let queryString;
     let currMonth = new Date().getMonth();
     let season = seasonFilter;
     if(season === 'thisSeason'){season=[currMonth-1, currMonth, currMonth+1]}
@@ -66,7 +65,6 @@ export default ({localeString, seasonFilter}) => {
             {birdListError.length>0 && <p className="err-msg">{birdListError}</p>}
             <h1>placeholder for bird call results</h1>
             <h4>locale: {locale}</h4>
-            <h4>queryString: {queryString}</h4>
             <h4>season: {season}</h4>
 
             <h4>unfiltered list:</h4>
