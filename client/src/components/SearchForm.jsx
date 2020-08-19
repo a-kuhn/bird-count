@@ -15,7 +15,7 @@ export default ({onNewLocale, onNewSeason}) => {
     e.preventDefault();
 
     // pass season up to Main.jsx
-    onNewSeason(searchSeason);
+    // onNewSeason(searchSeason);
 
     // create locale string for Geocoder & send up to Main.jsx
     let locale = ``;
@@ -24,11 +24,11 @@ export default ({onNewLocale, onNewSeason}) => {
     if (searchCounty.length>0){locale += `${searchCounty}+County+`};
     if (searchState.length>0){locale += `${searchState}`};
     locale = encodeURIComponent(locale);
-    onNewLocale(locale);
+    // onNewLocale(locale);
 
     console.log(`sending searchSeason: ${searchSeason} and locale: ${locale} up to Main.jsx`);
 
-    navigate('/main/results/');
+    navigate(`/main/results/${locale}/${searchSeason}`);
   }
 
   return (
