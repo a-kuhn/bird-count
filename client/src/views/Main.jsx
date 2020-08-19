@@ -11,9 +11,9 @@ export default () => {
     const [radius, setRadius] = useState('');
 
     // create setter functions to pass down to SearchForm
-    const formSetLocale = (locale) => {setLocale(locale); console.log(`setting locale: ${locale}`);};
-    const formSetSeason = (season) => {setSeason(season); console.log(`setting season: ${season}`);};
-    const formSetRadius = (radius) => setRadius(radius);
+    const formSetLocale = (locale)=>{setLocale(locale); console.log(`setting locale: ${locale}`);};
+    const formSetSeason = (season)=>{setSeason(season); console.log(`setting season: ${season}`);};
+    const formSetRadius = (radius)=>setRadius(radius);
 
     return(
         <div className="container">
@@ -34,7 +34,7 @@ export default () => {
                     localeString={locale}
                     seasonFilter={season}
                     radiusFilter={radius}
-                    path="/main/search/"
+                    path="/main/results/"
                 />
             </Router>
         </div>

@@ -28,7 +28,7 @@ export default ({onNewLocale, onNewSeason}) => {
 
     console.log(`sending searchSeason: ${searchSeason} and locale: ${locale} up to Main.jsx`);
 
-    navigate('/main/search');
+    navigate('/main/results/');
   }
 
   return (
