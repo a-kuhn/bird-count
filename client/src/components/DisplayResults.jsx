@@ -28,7 +28,6 @@ export default ({localeString, seasonFilter}) => {
         })
             .then(res=>{
                 // use response to build request to iNaturalist:
-                // create most of queryString for iNaturalist & send up to Main.jsx
                 let currDate = new Date();
                 axios.get(`https://api.inaturalist.org/v1/observations`, {
                     params: {
@@ -47,12 +46,12 @@ export default ({localeString, seasonFilter}) => {
                         lng: `${res.data.results[0].geometry.location.lng}`
                     }
                 })
-                    .then(res=>{setBirdList(res.data.results); console.log(res.data.results);})
+                    .then(r=>{setBirdList(r.data.results); console.log(r.data.results);})
                     // .then(filterBirdList(birdList))
                     .catch(err => setBirdListError(`an error occurred while trying to build your checklist:\n${err}`))
             })
             .catch(err=>setGeocodeError(`something's wrong with the location you're using:\n${err}`))
-    },[locale]);
+    },[locale, season]);
 
     // filter results for season & unique taxa
     const filterBirdList = (bigList) => {
