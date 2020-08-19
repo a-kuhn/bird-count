@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
-export default ({localeString, seasonFilter}) => {
-    console.log(`loading results...\nprops: localeString=${localeString}, seasonFilter=${seasonFilter}`);
+export default (props) => {
+    console.log(`loading results...\nprops: locale=${props.locale}, searchSeason=${props.searchSeason}`);
     // create variables for props passed down from Main.jsx 
-    const locale = localeString;
+    const locality = props.locale;
     let currMonth = new Date().getMonth();
-    let season = seasonFilter;
+    let season = props.searchSeason;
     if(season === 'thisSeason'){season=[currMonth-1, currMonth, currMonth+1]}
     if(season === 'springSeason'){season=[2,3,4]}
     if(season === 'summerSeason'){season=[5,6,7]}
@@ -22,7 +22,7 @@ export default ({localeString, seasonFilter}) => {
     useEffect(()=>{
         axios.get(`https://maps.googleapis.com/maps/api/geocode/json`, {
             params: {
-                address: locale,
+                address: locality,
                 key: process.env.REACT_APP_GEOCODER_KEY
             }
         })
@@ -51,7 +51,7 @@ export default ({localeString, seasonFilter}) => {
                     .catch(err => setBirdListError(`an error occurred while trying to build your checklist:\n${err}`))
             })
             .catch(err=>setGeocodeError(`something's wrong with the location you're using:\n${err}`))
-    },[locale, season]);
+    },[locality, season]);
 
     // filter results for season & unique taxa
     const filterBirdList = (bigList) => {
@@ -64,7 +64,7 @@ export default ({localeString, seasonFilter}) => {
             {geocodeError.length>0 && <p className="err-msg">{geocodeError}</p>}
             {birdListError.length>0 && <p className="err-msg">{birdListError}</p>}
             <h1>placeholder for bird call results</h1>
-            <h4>locale: {locale}</h4>
+            <h4>locale: {locality}</h4>
             <h4>season: {season}</h4>
 
             <h4>unfiltered list:</h4>

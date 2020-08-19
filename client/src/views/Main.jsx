@@ -18,7 +18,7 @@ export default () => {
     return(
         <div className="container">
             <div className="d-inline-flex">
-                <Link to="/logout" className="logout-btn m-4">Logout</Link>
+                <Link to="logout" className="logout-btn m-4">Logout</Link>
             </div>
             
             {/* SearchForm needs setter functions passed down */}
@@ -34,7 +34,7 @@ export default () => {
                     // localeString={locale}
                     // seasonFilter={season}
                     // radiusFilter={radius}
-                    path="/main/results/:locale/:season"
+                    path="results/:locale/:season"
                 />
             </Router>
         </div>

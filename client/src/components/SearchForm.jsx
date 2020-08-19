@@ -2,13 +2,13 @@ import React, {useState} from 'react';
 import {navigate} from '@reach/router';
 
 
-export default ({onNewLocale, onNewSeason}) => {
+export default () => {
   //to keep track of what is being typed into search form
   const [searchLocation, setSearchLocation] = useState("");
-  const [searchState, setSearchState] = useState("");
+  const [searchState, setSearchState] = useState("ca");
   const [searchCounty, setSearchCounty] = useState("");
-  const [searchMunicipality, setSearchMunicipality] = useState("");
-  const [searchSeason, setSearchSeason] = useState("");
+  const [searchMunicipality, setSearchMunicipality] = useState("irvine");
+  const [searchSeason, setSearchSeason] = useState("thisSeason");
   const [searchRadius, setSearchRadius] = useState("");
 
   const handleSubmit = (e) => {
@@ -26,7 +26,7 @@ export default ({onNewLocale, onNewSeason}) => {
     locale = encodeURIComponent(locale);
     // onNewLocale(locale);
 
-    console.log(`sending searchSeason: ${searchSeason} and locale: ${locale} up to Main.jsx`);
+    console.log(`sending searchSeason: '${searchSeason}' and locale: '${locale}' up to Main.jsx`);
 
     navigate(`/main/results/${locale}/${searchSeason}`);
   }
@@ -93,6 +93,7 @@ export default ({onNewLocale, onNewSeason}) => {
                     name="searchSeason"
                     id="thisSeason"
                     value="thisSeason"
+                    checked
                     ></input>
                     <label className="form-check-label ml-2" htmlFor="thisSeason">
                     this season (&#177; 1 month from today)
