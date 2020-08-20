@@ -5,14 +5,14 @@ export default () => {
     return(
         <>
         {/* main container for form */}
-        <form className="outline container"> {/* might want to switch d-flex to container */}
+        <form className="container">
             {/* top row for location and season columns */}
-            <div className="outline form-row">
+            <div className="form-row">
                 {/* left column for location */}
-                <fieldset className="thick-border form-group col-md-6">
-                <legend className="">location</legend>
+                <fieldset className="thick-border form-group col-md-6 outline-or">
+                <legend className="w-auto mx-3 px-1">location</legend>
                     {/* top row for location */}
-                    <div className="outline form-row">
+                    <div className="form-row m-2 m-2">
                     <input
                         // onChange={(e) => setSearchLocation(e.target.value)}
                         // value={searchLocation}
@@ -22,7 +22,7 @@ export default () => {
                     ></input>
                     </div>
                     {/* second row for municipality */}
-                    <div className="outline form-row">
+                    <div className="form-row m-2">
                         <input
                             // onChange={(e) => setSearchLocation(e.target.value)}
                             // value={searchLocation}
@@ -32,8 +32,8 @@ export default () => {
                         ></input>
                     </div>
                     {/* third row for county & state */}
-                    <div className="outline form-row">
-                        <div className="outline col-md-6">
+                    <div className="form-row m-1">
+                        <div className="col-md-6">
                             <input
                                 // onChange={(e) => setSearchLocation(e.target.value)}
                                 // value={searchLocation}
@@ -42,7 +42,7 @@ export default () => {
                                 placeholder="county"
                             ></input>
                         </div>
-                        <div className="outline col-md-6">
+                        <div className="col-md-6">
                             <input
                                 // onChange={(e) => setSearchLocation(e.target.value)}
                                 // value={searchLocation}
@@ -53,7 +53,7 @@ export default () => {
                         </div>
                     </div>
                     {/* bottom row for search radius */}
-                    <div className="outline form-row">
+                    <div className="form-row m-2">
                         <input
                             // onChange={(e) => setSearchLocation(e.target.value)}
                             // value={searchLocation}
@@ -64,11 +64,11 @@ export default () => {
                     </div>
                 </fieldset> {/* end column for location */}
                 {/* right column for season, stretched to match height of location */}
-                <fieldset className="thick-border form-group col-md-6">
-                <legend className="">season</legend>
+                <fieldset className="thick-border p-2 form-group col-md-6 outline-or">
+                <legend className="w-auto mx-3 px-1">season</legend>
                     {/* top row for current season */}
-                    <div className="outline form-row">
-                        <div className="form-check">
+                    <div className="form-row mt-2 d-flex justify-content-center">
+                        <div className="form-check text-center">
                             <input
                             // onChange={(e) => setSearchSeason(e.target.value)}
                             className="form-check-input"
@@ -83,12 +83,12 @@ export default () => {
                         </div>
                     </div>
                     {/* second row for spring/summer */}
-                    <div className="outline form-row">
-                        <div className="outline col-md-6">
-                            <div className="form-check">
+                    <div className="form-row">
+                        <div className="col-md-6 mt-2 d-flex justify-content-center">
+                            <div className="form-check d-flex text-center">
                                 <input
                                 // onChange={(e) => setSearchSeason(e.target.value)}
-                                className="form-check-input"
+                                className="form-check-input mt-3"
                                 type="radio"
                                 name="searchSeason"
                                 id="springSeason"
@@ -99,11 +99,11 @@ export default () => {
                                 </label>
                             </div>
                         </div>
-                        <div className="outline col-md-6">
-                            <div className="form-check">
+                        <div className="col-md-6 mt-2 d-flex justify-content-center">
+                            <div className="form-check d-flex text-center">
                                 <input
                                 // onChange={(e) => setSearchSeason(e.target.value)}
-                                className="form-check-input"
+                                className="form-check-input mt-3"
                                 type="radio"
                                 name="searchSeason"
                                 id="summerSeason"
@@ -116,33 +116,33 @@ export default () => {
                         </div>
                     </div>
                     {/* third row for winter/fall */}
-                    <div className="outline form-row">
-                        <div className="outline col-md-6">
-                            <div className="form-check">
+                    <div className="form-row">
+                        <div className="col-md-6 mt-2 d-flex justify-content-center">
+                            <div className="form-check d-flex text-center">
                                 <input
                                 // onChange={(e) => setSearchSeason(e.target.value)}
-                                className="form-check-input"
+                                className="form-check-input mt-3"
                                 type="radio"
                                 name="searchSeason"
                                 id="fallSeason"
                                 value="fallSeason"
                                 ></input>
-                                <label className="form-check-label" htmlFor="fallSeason">
+                                <label className="form-check-label mx-2" htmlFor="fallSeason">
                                     fall<br/>(Sept - Nov)
                                 </label>
                             </div>
                         </div>
-                        <div className="outline col-md-6">
-                            <div className="form-check">
+                        <div className="col-md-6 mt-2 d-flex justify-content-center">
+                            <div className="form-check d-flex text-center">
                                 <input
                                 // onChange={(e) => setSearchSeason(e.target.value)}
-                                className="form-check-input"
+                                className="form-check-input mt-3"
                                 type="radio"
                                 name="searchSeason"
                                 id="winterSeason"
                                 value="winterSeason"
                                 ></input>
-                                <label className="form-check-label" htmlFor="winterSeason">
+                                <label className="form-check-label mx-2" htmlFor="winterSeason">
                                     winter<br/>(Dec - Feb)
                                 </label>
                             </div>
@@ -151,7 +151,7 @@ export default () => {
                 </fieldset>{/* end column for season */}
             </div>
             {/* bottom row for submit button */}
-            <div className="outline row justify-content-around">
+            <div className="row justify-content-around">
                 {/* submit button, centered */}
                 <button className="btn btn-success font-weight-bold m-2">
                     Build a Checklist
