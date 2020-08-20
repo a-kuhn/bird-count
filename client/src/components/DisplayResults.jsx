@@ -7,7 +7,6 @@ export default (props) => {
     const locality = props.locale;
     const season = decodeURIComponent(props.season);
 
-    console.log(`locality:${locality} \nseason: ${season}`);
     // create state for results of API calls:
     const [birdList, setBirdList] = useState([]);
     const [geocodeError, setGeocodeError] = useState('');
@@ -41,12 +40,15 @@ export default (props) => {
                         lng: `${res.data.results[0].geometry.location.lng}`
                     }
                 })
-                    .then(r=>{setBirdList(r.data.results); console.log(r.data.results);})
+                    .then(r=>{
+                        setBirdList(r.data.results); 
+                        console.log(r.data.results);
+                    })
                     // .then(filterBirdList(birdList))
                     .catch(err => setBirdListError(`an error occurred while trying to build your checklist:\n${err}`))
             })
             .catch(err=>setGeocodeError(`something's wrong with the location you're using:\n${err}`))
-    },[locality, season]);
+    },[]);
 
     // filter results for season & unique taxa
     const filterBirdList = (bigList) => {
