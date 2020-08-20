@@ -17,6 +17,15 @@ export default () => {
     // pass season up to Main.jsx
     // onNewSeason(searchSeason);
 
+    // create month array for season
+    let season ='';
+    let currMonth = new Date().getMonth();
+    if(searchSeason === 'thisSeason'){season=[currMonth-1, currMonth, currMonth+1]}
+    if(searchSeason === 'springSeason'){season=[2,3,4]}
+    if(searchSeason === 'summerSeason'){season=[5,6,7]}
+    if(searchSeason === 'fallSeason'){season=[8,9,10]}
+    if(searchSeason === 'winterSeason'){season=[11,0,1]}
+
     // create locale string for Geocoder & send up to Main.jsx
     let locale = ``;
     if (searchLocation.length>0){locale += `${searchLocation}+`};
@@ -26,9 +35,9 @@ export default () => {
     locale = encodeURIComponent(locale);
     // onNewLocale(locale);
 
-    console.log(`sending searchSeason: '${searchSeason}' and locale: '${locale}' up to Main.jsx`);
+    console.log(`sending searchSeason: '${season}' and locale: '${locale}' up to Main.jsx`);
 
-    navigate(`/main/results/${locale}/${searchSeason}`);
+    navigate(`/main/results/${locale}/${season}`);
   }
 
   return (

@@ -5,14 +5,9 @@ export default (props) => {
     console.log(`loading results...\nprops: locale=${props.locale}, searchSeason=${props.searchSeason}`);
     // create variables for props passed down from Main.jsx 
     const locality = props.locale;
-    let currMonth = new Date().getMonth();
-    let season = props.searchSeason;
-    if(season === 'thisSeason'){season=[currMonth-1, currMonth, currMonth+1]}
-    if(season === 'springSeason'){season=[2,3,4]}
-    if(season === 'summerSeason'){season=[5,6,7]}
-    if(season === 'fallSeason'){season=[8,9,10]}
-    if(season === 'winterSeason'){season=[11,0,1]}
-    console.log(`season: ${season}`);
+    const season = props.searchSeason;
+
+    console.log(`locality:${locality} \nseason: ${season}`);
     // create state for results of API calls:
     const [birdList, setBirdList] = useState([]);
     const [geocodeError, setGeocodeError] = useState('');
