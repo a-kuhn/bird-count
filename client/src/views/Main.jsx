@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link, Router} from '@reach/router';
 
-import SearchForm from '../components/SearchForm';
+import Search from '../components/Search';
 import DisplayResults from '../components/DisplayResults';
 
 export default () => {
@@ -12,7 +12,7 @@ export default () => {
                 <Link to="/logout" className="logout-btn m-4">Logout</Link>
             </div>
             
-            <SearchForm />
+            <Search />
 
             <Router >
                 <DisplayResults path="results/:locale/:season"/>
