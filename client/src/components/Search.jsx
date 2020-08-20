@@ -7,9 +7,9 @@ export default () => {
         {/* main container for form */}
         <form className="container">
             {/* top row for location and season columns */}
-            <div className="form-row">
+            <div className="form-row justify-content-around">
                 {/* left column for location */}
-                <fieldset className="thick-border form-group col-md-6 outline-or">
+                <fieldset className="thick-border form-group col-md-5">
                 <legend className="w-auto mx-3 px-1">location</legend>
                     {/* top row for location */}
                     <div className="form-row m-2 m-2">
@@ -64,10 +64,10 @@ export default () => {
                     </div>
                 </fieldset> {/* end column for location */}
                 {/* right column for season, stretched to match height of location */}
-                <fieldset className="thick-border p-2 form-group col-md-6 outline-or">
+                <fieldset className="thick-border p-2 form-group col-md-5">
                 <legend className="w-auto mx-3 px-1">season</legend>
                     {/* top row for current season */}
-                    <div className="form-row mt-2 d-flex justify-content-center">
+                    <div className="form-row my-2 d-flex justify-content-center lt-gray-border">
                         <div className="form-check text-center">
                             <input
                             // onChange={(e) => setSearchSeason(e.target.value)}
@@ -84,7 +84,7 @@ export default () => {
                     </div>
                     {/* second row for spring/summer */}
                     <div className="form-row">
-                        <div className="col-md-6 mt-2 d-flex justify-content-center">
+                        <div className="col-md-6 my-2 d-flex justify-content-center lt-gray-border">
                             <div className="form-check d-flex text-center">
                                 <input
                                 // onChange={(e) => setSearchSeason(e.target.value)}
@@ -99,7 +99,7 @@ export default () => {
                                 </label>
                             </div>
                         </div>
-                        <div className="col-md-6 mt-2 d-flex justify-content-center">
+                        <div className="col-md-6 my-2 d-flex justify-content-center lt-gray-border">
                             <div className="form-check d-flex text-center">
                                 <input
                                 // onChange={(e) => setSearchSeason(e.target.value)}
@@ -117,7 +117,7 @@ export default () => {
                     </div>
                     {/* third row for winter/fall */}
                     <div className="form-row">
-                        <div className="col-md-6 mt-2 d-flex justify-content-center">
+                        <div className="col-md-6 my-2 d-flex justify-content-center lt-gray-border">
                             <div className="form-check d-flex text-center">
                                 <input
                                 // onChange={(e) => setSearchSeason(e.target.value)}
@@ -132,7 +132,7 @@ export default () => {
                                 </label>
                             </div>
                         </div>
-                        <div className="col-md-6 mt-2 d-flex justify-content-center">
+                        <div className="col-md-6 my-2 d-flex justify-content-center lt-gray-border">
                             <div className="form-check d-flex text-center">
                                 <input
                                 // onChange={(e) => setSearchSeason(e.target.value)}

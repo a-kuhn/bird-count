@@ -11,6 +11,12 @@
   outline: 1px solid purple;
 }
 
+.lt-gray-border {
+  border: 1px solid rgb(195, 202, 210);
+  border-radius: 5px;
+  padding: 1px;
+}
+
 .outline-or {
   outline: 2px solid orange;
 }
