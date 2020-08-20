@@ -25,6 +25,7 @@ export default () => {
     if(searchSeason === 'summerSeason'){season=[5,6,7]}
     if(searchSeason === 'fallSeason'){season=[8,9,10]}
     if(searchSeason === 'winterSeason'){season=[11,0,1]}
+    season = encodeURIComponent(season);
 
     // create locale string for Geocoder & send up to Main.jsx
     let locale = ``;

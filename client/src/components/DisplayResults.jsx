@@ -2,10 +2,10 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
 export default (props) => {
-    console.log(`loading results...\nprops: locale=${props.locale}, searchSeason=${props.searchSeason}`);
+    console.log(`loading results...\nprops: locale=${props.locale}, season=${props.season}`);
     // create variables for props passed down from Main.jsx 
     const locality = props.locale;
-    const season = props.searchSeason;
+    const season = decodeURIComponent(props.season);
 
     console.log(`locality:${locality} \nseason: ${season}`);
     // create state for results of API calls:
