@@ -151,7 +151,7 @@ export default () => {
                 </fieldset>{/* end column for season */}
             </div>
             {/* bottom row for submit button */}
-            <div className="outline row">
+            <div className="outline row justify-content-around">
                 {/* submit button, centered */}
                 <button className="btn btn-success font-weight-bold m-2">
                     Build a Checklist
