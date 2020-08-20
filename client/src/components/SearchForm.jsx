@@ -41,7 +41,7 @@ export default () => {
     <div className="container mt-5 ">
       <form onSubmit={handleSubmit} className="form">
         <div className="row">
-          <div className="col-6 outline">
+          <div className="col-6">
             <fieldset className="thick-border p-2">
               <legend className="w-auto mx-3 px-1">location</legend>
               <input
@@ -87,7 +87,7 @@ export default () => {
               ></input>
             </fieldset>
           </div>
-          <div className="col-6 outline">
+          <div className="col-6">
             <fieldset className="thick-border p-2">
               <legend className="w-auto mx-3 px-1">season</legend>
               <div className="form-row px-4 justify-content-around">
