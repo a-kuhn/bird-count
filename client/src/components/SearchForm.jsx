@@ -12,7 +12,6 @@ export default () => {
   const [searchRadius, setSearchRadius] = useState("");
 
   const handleSubmit = (e) => {
-    e.preventDefault();
 
     // create month array for season
     let season ='';
