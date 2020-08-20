@@ -61,14 +61,10 @@ export default (props) => {
         <div>
             {geocodeError.length>0 && <p className="err-msg">{geocodeError}</p>}
             {birdListError.length>0 && <p className="err-msg">{birdListError}</p>}
-            {/* <h1>placeholder for bird call results</h1>
-            <h4>locale: {locality}</h4>
-            <h4>season: {season}</h4> */}
 
-            <h4>unfiltered list:</h4>
+            <h4>Here's what we found:</h4>
             <ul>
                 { birdList.map((bird, idx)=>
-                // <li key={idx}>{bird.species_guess}</li>
                 <Bird bird={bird} key={idx}/>
                 )}
             </ul>
