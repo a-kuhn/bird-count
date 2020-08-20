@@ -1,21 +1,20 @@
 import React from 'react'
 import {Link} from '@reach/router';
 
-export default ({bird}) => {
-
+export default ({bird, idx}) => {
+    console.log(`bird ${idx}: ${bird.taxon.preferred_common_name}`);
     return(
         <div className="d-flex">
             <img 
                 src={bird.taxon.default_photo.square_url} 
-                alt={`picture of ${bird.preferred_common_name}`}
-                className="d-inline-flex">
+                alt={`${bird.taxon.preferred_common_name}`}>
             </img>
-            <Link 
-                to={`${bird.taxon.wikipedia_url}`}
+            <a 
+                href={`${bird.taxon.wikipedia_url}`}
                 className="d-inline-flex"
-            >{bird.preferred_common_name} 
-                <span className="font-italic">{bird.name}</span>
-            </Link>
+            >{bird.taxon.preferred_common_name} 
+                <span className="font-italic">{bird.taxon.name}</span>
+            </a>
         </div>
     );
 }
