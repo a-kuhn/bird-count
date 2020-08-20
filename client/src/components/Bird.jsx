@@ -1,8 +1,7 @@
 import React from 'react'
 import {Link} from '@reach/router';
 
-export default ({bird, idx}) => {
-    console.log(`bird ${idx}: ${bird.taxon.preferred_common_name}`);
+export default ({bird}) => {
     return(
         <div className="d-flex">
             <img 

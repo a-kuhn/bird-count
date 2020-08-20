@@ -5,10 +5,10 @@ import {navigate} from '@reach/router';
 export default () => {
   //to keep track of what is being typed into search form
   const [searchLocation, setSearchLocation] = useState("");
-  const [searchState, setSearchState] = useState("ca");
+  const [searchState, setSearchState] = useState("");
   const [searchCounty, setSearchCounty] = useState("");
-  const [searchMunicipality, setSearchMunicipality] = useState("irvine");
-  const [searchSeason, setSearchSeason] = useState("thisSeason");
+  const [searchMunicipality, setSearchMunicipality] = useState("");
+  const [searchSeason, setSearchSeason] = useState("");
   const [searchRadius, setSearchRadius] = useState("");
 
   const handleSubmit = (e) => {
@@ -100,7 +100,6 @@ export default () => {
                     name="searchSeason"
                     id="thisSeason"
                     value="thisSeason"
-                    checked
                     ></input>
                     <label className="form-check-label ml-2" htmlFor="thisSeason">
                     this season (&#177; 1 month from today)
