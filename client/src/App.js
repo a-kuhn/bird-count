@@ -11,8 +11,8 @@ function App() {
 
   return (
     <div className="App">
-      <Router>
-        <LoginReg path="/" />
+      <Router path="/">
+        <LoginReg path="/"/>
         <Main path="main">
           <SearchForm path=""/>
           <DisplayResults path="results/:locale/:season"/>
