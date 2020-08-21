@@ -1,7 +1,6 @@
 import React from 'react';
 import {Link, Router} from '@reach/router';
 
-import Search from '../components/Search';
 import SearchForm from '../components/SearchForm';
 import DisplayResults from '../components/DisplayResults';
 
@@ -14,7 +13,6 @@ export default () => {
             </div>
             
             <SearchForm />
-            <Search />
 
             <Router >
                 <DisplayResults path="results/:locale/:season"/>

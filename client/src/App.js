@@ -5,7 +5,7 @@ import LoginReg from './views/LoginReg';
 import Main from './views/Main';
 import Logout from './views/Logout';
 import DisplayResults from './components/DisplayResults';
-import Search from './components/Search';
+import SearchForm from './components/SearchForm';
 
 function App() {
 
@@ -14,7 +14,7 @@ function App() {
       <Router path="/">
         <LoginReg path="/"/>
         <Main path="main">
-          <Search path=""/>
+          <SearchForm path=""/>
           <DisplayResults path="results/:locale/:season"/>
         </Main>
         <Logout path="logout"/>
