@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+.dark-font {
+  color: rgb(57,63,69);
+}
+
 .err-msg {
   color: red;
   font-weight: bold;

@@ -40,7 +40,7 @@ export default () => {
   return (
     <>
     {/* main container for form */}
-    <form className="container">
+    <form className="container dark-font">
         {/* top row for location and season columns */}
         <div className="form-row justify-content-around">
             {/* left column for location */}
