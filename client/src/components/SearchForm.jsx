@@ -12,7 +12,7 @@ export default () => {
   const [searchRadius, setSearchRadius] = useState("");
 
   const handleSubmit = (e) => {
-
+    e.preventDefault();
     // create month array for season
     let season ='';
     let currMonth = new Date().getMonth();
@@ -40,7 +40,7 @@ export default () => {
   return (
     <>
     {/* main container for form */}
-    <form className="container dark-font">
+    <form className="container dark-font" onSubmit={handleSubmit}>
         {/* top row for location and season columns */}
         <div className="form-row justify-content-around">
             {/* left column for location */}
