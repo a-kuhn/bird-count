@@ -26,6 +26,7 @@ export default (props) => {
                 let currDate = new Date();
                 axios.get(`https://api.inaturalist.org/v1/observations`, {
                     params: {
+                        per_page: 200,
                         iconic_taxa: `Aves`,
                         order: `desc`,
                         order_by: `observed_on`,
