@@ -3,8 +3,11 @@ import axios from 'axios';
 import Bird from './Bird';
 
 export default (props) => {
+    // to use orderBy in filterBirds():
+    var _ = require('agile');
+    
     console.log(`loading results...\nprops: locale=${props.locale}, season=${props.season}`);
-    // create variables for props passed down from Main.jsx 
+    // create variables for props passed down through Router 
     const locality = props.locale;
     const season = decodeURIComponent(props.season);
 
@@ -12,6 +15,22 @@ export default (props) => {
     const [birdList, setBirdList] = useState([]);
     const [geocodeError, setGeocodeError] = useState('');
     const [birdListError, setBirdListError] = useState('');
+
+    // filter results for unique taxa, then order by common name
+    const filterBirds = (birds) => {
+        let fullList = [...birds];
+        let filteredList = [];
+        let uniqueBirds = [];
+        fullList.forEach(b => {
+            if (!uniqueBirds.includes(b.taxon.preferred_common_name)){
+                filteredList.push(b);
+                uniqueBirds.push(b.taxon.preferred_common_name);
+            }
+        });
+        console.log(`starting to filter...`);
+        let orderedList = _.orderBy(filteredList, 'taxon.preferred_common_name');
+        return orderedList;
+    }
     
     // make calls to Geocoder then iNaturalist
     useEffect(()=>{
@@ -43,19 +62,14 @@ export default (props) => {
                     }
                 })
                     .then(r=>{
-                        setBirdList(r.data.results); 
-                        console.log(r.data.results);
+                        let birds = filterBirds(r.data.results); 
+                        console.log(birds);
+                        setBirdList(birds);
                     })
-                    // .then(filterBirdList(birdList))
                     .catch(err => setBirdListError(`an error occurred while trying to build your checklist:\n${err}`))
             })
             .catch(err=>setGeocodeError(`something's wrong with the location you're using:\n${err}`))
     },[locality, season]);
-
-    // filter results for season & unique taxa
-    const filterBirdList = (bigList) => {
-        let filteredList = bigList;
-    }
 
     // display filtered list of results
     return(
