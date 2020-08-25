@@ -12,6 +12,25 @@ export default (props) => {
     const [birdList, setBirdList] = useState([]);
     const [geocodeError, setGeocodeError] = useState('');
     const [birdListError, setBirdListError] = useState('');
+
+    // filter results for unique taxa
+    const filterBirdList = (birdList) => {
+        console.log(`filtering bird list results ...${birdList}`);
+        let filteredList = [];
+        let uniqueBirds = {};
+        birdList.forEach(b => {
+            console.log(`bird: ${b.taxon.preferred_common_name}`);
+            if (uniqueBirds[b.taxon.preferred_common_name]){
+                filteredList.append(b);
+                uniqueBirds[b.taxon.preferred_common_name] = 1;
+
+            }
+        });
+        filteredList.forEach(b => {
+            console.log(`bird: ${b.preferred_common_name}`);
+        });
+        return filteredList;
+    }
     
     // make calls to Geocoder then iNaturalist
     useEffect(()=>{
@@ -45,17 +64,14 @@ export default (props) => {
                     .then(r=>{
                         setBirdList(r.data.results); 
                         console.log(r.data.results);
+                        let filteredBirds = filterBirdList(birdList);
+                        console.log(`filteredBirds: ${filteredBirds}`);
+                        // setBirdList(filteredBirds);
                     })
-                    // .then(filterBirdList(birdList))
                     .catch(err => setBirdListError(`an error occurred while trying to build your checklist:\n${err}`))
             })
             .catch(err=>setGeocodeError(`something's wrong with the location you're using:\n${err}`))
     },[locality, season]);
-
-    // filter results for season & unique taxa
-    const filterBirdList = (bigList) => {
-        let filteredList = bigList;
-    }
 
     // display filtered list of results
     return(
