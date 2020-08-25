@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Bird from './Bird';
+import orderBy from 'agile';
 
 export default (props) => {
     console.log(`loading results...\nprops: locale=${props.locale}, season=${props.season}`);
@@ -13,23 +14,22 @@ export default (props) => {
     const [geocodeError, setGeocodeError] = useState('');
     const [birdListError, setBirdListError] = useState('');
 
-    // filter results for unique taxa
-    const filterBirdList = (birdList) => {
-        console.log(`filtering bird list results ...${birdList}`);
+    // filter results for unique taxa, then order by common name
+    const filterBirds = (birds) => {
+        let fullList = [...birds];
+        // console.log(`birds: ${fullList}`);
         let filteredList = [];
-        let uniqueBirds = {};
-        birdList.forEach(b => {
-            console.log(`bird: ${b.taxon.preferred_common_name}`);
-            if (uniqueBirds[b.taxon.preferred_common_name]){
-                filteredList.append(b);
-                uniqueBirds[b.taxon.preferred_common_name] = 1;
-
+        let uniqueBirds = [];
+        fullList.forEach(b => {
+            if (!uniqueBirds.includes(b.taxon.preferred_common_name)){
+                filteredList.push(b);
+                uniqueBirds.push(b.taxon.preferred_common_name);
+                // console.log(`adding ${b.taxon.preferred_common_name} to filteredList and uniqueBirds...`);
             }
         });
-        filteredList.forEach(b => {
-            console.log(`bird: ${b.preferred_common_name}`);
-        });
-        return filteredList;
+        console.log(`starting to filter...`);
+        let orderedList = orderBy(filteredList, 'taxon.preferred_common_name');
+        return orderedList;
     }
     
     // make calls to Geocoder then iNaturalist
@@ -62,11 +62,9 @@ export default (props) => {
                     }
                 })
                     .then(r=>{
-                        setBirdList(r.data.results); 
-                        console.log(r.data.results);
-                        let filteredBirds = filterBirdList(birdList);
-                        console.log(`filteredBirds: ${filteredBirds}`);
-                        // setBirdList(filteredBirds);
+                        let birds = filterBirds(r.data.results); 
+                        console.log(birds);
+                        setBirdList(birds);
                     })
                     .catch(err => setBirdListError(`an error occurred while trying to build your checklist:\n${err}`))
             })
