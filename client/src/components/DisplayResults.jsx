@@ -5,7 +5,7 @@ import orderBy from 'agile';
 
 export default (props) => {
     console.log(`loading results...\nprops: locale=${props.locale}, season=${props.season}`);
-    // create variables for props passed down from Main.jsx 
+    // create variables for props passed down through Router 
     const locality = props.locale;
     const season = decodeURIComponent(props.season);
 
@@ -17,18 +17,17 @@ export default (props) => {
     // filter results for unique taxa, then order by common name
     const filterBirds = (birds) => {
         let fullList = [...birds];
-        // console.log(`birds: ${fullList}`);
         let filteredList = [];
         let uniqueBirds = [];
         fullList.forEach(b => {
             if (!uniqueBirds.includes(b.taxon.preferred_common_name)){
                 filteredList.push(b);
                 uniqueBirds.push(b.taxon.preferred_common_name);
-                // console.log(`adding ${b.taxon.preferred_common_name} to filteredList and uniqueBirds...`);
             }
         });
         console.log(`starting to filter...`);
-        let orderedList = orderBy(filteredList, 'taxon.preferred_common_name');
+        let orderedList = orderBy(filteredList, 'taxon.preferred_common_name', false);
+        orderedList.map(b => console.log(b.taxon.preferred_common_name));
         return orderedList.__value__;
     }
     
