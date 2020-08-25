@@ -1,9 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Bird from './Bird';
-import orderBy from 'agile';
 
 export default (props) => {
+    // to use orderBy in filterBirds():
+    var _ = require('agile');
+    
     console.log(`loading results...\nprops: locale=${props.locale}, season=${props.season}`);
     // create variables for props passed down through Router 
     const locality = props.locale;
@@ -26,9 +28,8 @@ export default (props) => {
             }
         });
         console.log(`starting to filter...`);
-        let orderedList = orderBy(filteredList, 'taxon.preferred_common_name', false);
-        orderedList.map(b => console.log(b.taxon.preferred_common_name));
-        return orderedList.__value__;
+        let orderedList = _.orderBy(filteredList, 'taxon.preferred_common_name');
+        return orderedList;
     }
     
     // make calls to Geocoder then iNaturalist
