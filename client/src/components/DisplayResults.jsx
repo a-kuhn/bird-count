@@ -29,7 +29,7 @@ export default (props) => {
         });
         console.log(`starting to filter...`);
         let orderedList = orderBy(filteredList, 'taxon.preferred_common_name');
-        return orderedList;
+        return orderedList.__value__;
     }
     
     // make calls to Geocoder then iNaturalist
