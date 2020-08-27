@@ -5,23 +5,7 @@ export default ({bird}) => {
 
     return(
         <>
-        <div className="d-flex">
-            <img 
-                src={bird.taxon.default_photo.square_url} 
-                alt={`${bird.taxon.preferred_common_name}`}
-                className="d-inline-flex mr-2 rounded-corners"
-                >
-            </img>
-            <a 
-                href={`${bird.taxon.wikipedia_url}`}
-                className="d-inline-flex mr-2"
-            >{bird.taxon.preferred_common_name} 
-            </a>
-            <p className="d-inline-flex mr-2 font-italic">{bird.taxon.name}</p>
-            <p className="d-inline-flex mr-2">{bird.observed_on}</p>
-        </div>
-        {/* trying out cards from bootstrap style={{width: 4 + 'em'}}*/}
-        <div className="card" style={{width: 15 + 'em'}}>
+        <div className="card mb-3 mr-3 thick-border" style={{width: 15 + 'em'}}>
             <img 
                 src={bird.taxon.default_photo.square_url} 
                 alt={`${bird.taxon.preferred_common_name}`}
