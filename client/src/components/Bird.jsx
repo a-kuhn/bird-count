@@ -13,7 +13,7 @@ export default ({bird}) => {
                 style={{width: 80 + 'px'}}
                 >
             </img>
-            <div className="card-body">
+            <div className="card-body text-center">
                 <a 
                     href={`${bird.taxon.wikipedia_url}`}
                     className="h5 py-3"
