@@ -78,11 +78,11 @@ export default (props) => {
             {birdListError.length>0 && <p className="err-msg">{birdListError}</p>}
 
             <h4>Here's what we found:</h4>
-            <ul>
+            <div className="d-inline-flex flex-wrap justify-content-center">
                 { birdList.map((bird, idx)=>
-                <Bird bird={bird} key={idx}/>
+                <Bird bird={bird} key={idx} />
                 )}
-            </ul>
+            </div>
 
         </div>
     );
