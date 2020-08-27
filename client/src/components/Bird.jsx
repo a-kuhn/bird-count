@@ -7,7 +7,7 @@ export default ({bird}) => {
             <img 
                 src={bird.taxon.default_photo.square_url} 
                 alt={`${bird.taxon.preferred_common_name}`}
-                className="d-inline-flex mr-2"
+                className="d-inline-flex mr-2 rounded-corners"
                 >
             </img>
             <a 
