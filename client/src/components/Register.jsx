@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
-import {navigate} from '@reach/router';
 
 export default () => {
-  //to keep track of what is being typed into search form
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -18,9 +16,7 @@ export default () => {
         <>
     {/* main container for form */}
     <form className="container dark-font" onSubmit={handleSubmit}>
-        {/* top row for location and season columns */}
         <div className="form-row justify-content-around">
-            {/* left column for location */}
             <fieldset className="thick-border form-group col-md-5">
             <legend className="w-auto mx-3 px-1">register</legend>
 
