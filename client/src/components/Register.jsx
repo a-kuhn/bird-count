@@ -15,11 +15,10 @@ export default () => {
     return(
         <>
     {/* main container for form */}
-    <form className="container dark-font" onSubmit={handleSubmit}>
+    <form className="col-5 dark-font outline" onSubmit={handleSubmit}>
         <div className="form-row justify-content-around">
-            <fieldset className="thick-border form-group col-md-5">
+            <fieldset className="thick-border form-group">
             <legend className="w-auto mx-3 px-1">register</legend>
-
                 <div className="form-row m-1">
                     <div className="col-md-6">
                         <input
