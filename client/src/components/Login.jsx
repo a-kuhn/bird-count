@@ -15,7 +15,7 @@ export default () => {
     <form className="col-5 dark-font outline" onSubmit={handleSubmit}>
         <div className="form-row justify-content-around">
             <fieldset className="thick-border form-group">
-            <legend className="w-auto mx-3 px-1">register</legend>
+            <legend className="w-auto mx-3 px-1">login</legend>
                 <div className="form-row m-2 m-2">
                     <input
                         onChange={(e) => setEmail(e.target.value)}
@@ -36,7 +36,7 @@ export default () => {
                 </div>
                 <div className="row justify-content-around">
                     <button className="btn btn-outline-success thick-border dark-font font-weight-bold m-2">
-                        register
+                        login
                     </button>
                 </div>    
             </fieldset> 
