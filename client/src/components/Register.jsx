@@ -15,7 +15,7 @@ export default () => {
     return(
         <>
     {/* main container for form */}
-    <form className="col-5 dark-font outline" onSubmit={handleSubmit}>
+    <form className="col-5 dark-font " onSubmit={handleSubmit}>
         <div className="form-row justify-content-around">
             <fieldset className="thick-border form-group">
             <legend className="w-auto mx-3 px-1">register</legend>
