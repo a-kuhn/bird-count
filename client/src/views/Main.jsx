@@ -9,7 +9,7 @@ export default () => {
     return(
         <div className="container">
             <div className="d-inline-flex">
-                <Link to="/logout" className="logout-btn m-4">Logout</Link>
+                <Link to="/logout" className="btn btn-outline-danger btn-lg m-4">Logout</Link>
             </div>
             
             <SearchForm />
