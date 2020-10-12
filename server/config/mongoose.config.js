@@ -1,8 +1,7 @@
 
 const mongoose = require("mongoose");
 
-// export an arrow function so that our server.js can
-// pass in the db_name
+// export an arrow function so that our server.js can pass in the db_name
 module.exports = (db_name) => {
   mongoose
     .connect(`mongodb://localhost/${db_name}`, {
