@@ -20,7 +20,7 @@ export default ({bird}) => {
                 >{bird.taxon.preferred_common_name}
                 </a>
                 <p className="font-italic">{bird.taxon.name}</p>
-                <a href={`${bird.uri}`}><span className="h6 dark-font" style={{fontSize: 14 + 'px'}}>last seen on: </span>{formatted_date}</a>
+                <a href={`${bird.uri}`}><span className="h6 dark-font" style={{fontSize: 14 + 'px'}}>last seen here on: </span>{formatted_date}</a>
             </div>
         </div>
         </>
