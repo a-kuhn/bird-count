@@ -21,6 +21,11 @@ const UserSchema = new mongoose.Schema(
       required: [true, "Password is required"],
       minlength: [8, "Password must be 8 characters or longer"],
     },
+    /*
+    TODO:
+    masterlist: [BirdSchema], <-- need to create BirdSchema
+    checklists: [ChecklistSchema], <-- need to create ChecklistSchema
+    */
   },
   { timestamps: true },
 );
