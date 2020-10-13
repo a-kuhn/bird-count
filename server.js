@@ -7,7 +7,7 @@ const db_name = "birdCount";
 // const mongooseConfigFunc = require("./config/mongoose.config");
 // mongooseConfigFunc(db_name);
 // shorthand of above
-require("../config/mongoose.config")(db_name);
+require("./server/config/mongoose.config.js")(db_name);
 
 const app = express();
 
@@ -18,7 +18,7 @@ app.use(cors());
 // req.body undefined without this!
 app.use(express.json());
 
-require("../routes/user.routes")(app);
+require("./server/routes/users.routes.js")(app);
 
 app.listen(port, () =>
   console.log(`Listening on port ${port} for REQuests to RESpond to.`),
