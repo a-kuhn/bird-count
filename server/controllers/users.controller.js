@@ -17,13 +17,13 @@ module.exports = {
     createUser(req, res) {
         User.create(req.body)
             .then(newUser => res.json({newUser: newUser}))
-            .catch(err => res.json({message: "Something went wrong with createUser()", error: err}))
+            .catch(err => res.status(400).json(err))
     },
     // /api/users/edit/:id  --> updateUser
     updateUser(req, res) {
         User.findOneAndUpdate({_id: req.params.id}, req.body, {new:true})
             .then(updatedUser => res.json({updatedUser: updatedUser}))
-            .catch(err => res.json({message: "Something went wrong with updateUsesr", error: err}))
+            .catch(err => res.status(400).json(err))
     },
     // /api/users/delete/:id  --> deleteUser
     deleteUser(req, res) {
