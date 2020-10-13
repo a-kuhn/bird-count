@@ -1,15 +1,40 @@
 import React, {useState} from 'react';
+import axios from 'axios';
+import {navigate} from '@reach/router';
 
 export default () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [pw, setPw] = useState("");
-  const [pwConfirm, setPwConfirm] = useState("");
+  //! ***  add pwConfirm back in  ***
+//   const [pwConfirm, setPwConfirm] = useState("");
+
+  const [errors, setErrors] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //TODO: build post request for db to create new user
+
+    //create newUser object from state
+    const newUser = {
+        firstName,
+        lastName,
+        email,
+        password: pw,
+        //! *** add pwConfirm back in ***
+    };
+
+    //send post request to add newUser to db
+    axios
+        .post('http://localhost:8000/api/users/new', newUser)
+        .then(res => {
+            console.log(res);
+            navigate('/main');
+        })
+        .catch(err => {
+            setErrors(err.response.data.errors);
+            console.error(err.response);
+        })
   } 
 
     return(
@@ -58,7 +83,8 @@ export default () => {
                             placeholder="password"
                         ></input>
                     </div>
-                    <div className="col-md-6">
+                    //! ***  add pwConfirm back in  ***
+                    {/* <div className="col-md-6">
                         <input
                             onChange={(e) => setPwConfirm(e.target.value)}
                             value={pwConfirm}
@@ -66,7 +92,7 @@ export default () => {
                             className="form-control"
                             placeholder="confirm password"
                         ></input>
-                    </div>
+                    </div> */}
                 </div>
                 <div className="row justify-content-around">
                     <button className="btn btn-outline-success thick-border dark-font font-weight-bold m-2">
