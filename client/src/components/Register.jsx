@@ -33,6 +33,8 @@ export default () => {
             setEmail("");
             setPassword("");
             setConfirmPassword("");
+            //TODO: switch this redirect to login newUser
+            navigate('/main')
         })
         .catch(err => {
             console.error(err);
