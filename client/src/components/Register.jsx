@@ -8,7 +8,7 @@ export default () => {
   const [email, setEmail] = useState("");
   const [pw, setPw] = useState("");
   //! ***  add pwConfirm back in  ***
-//   const [pwConfirm, setPwConfirm] = useState("");
+  const [pwConfirm, setPwConfirm] = useState("");
 
   const [errors, setErrors] = useState(null);
 
@@ -83,8 +83,7 @@ export default () => {
                             placeholder="password"
                         ></input>
                     </div>
-                    //! ***  add pwConfirm back in  ***
-                    {/* <div className="col-md-6">
+                    <div className="col-md-6">
                         <input
                             onChange={(e) => setPwConfirm(e.target.value)}
                             value={pwConfirm}
@@ -92,7 +91,7 @@ export default () => {
                             className="form-control"
                             placeholder="confirm password"
                         ></input>
-                    </div> */}
+                    </div>
                 </div>
                 <div className="row justify-content-around">
                     <button className="btn btn-outline-success thick-border dark-font font-weight-bold m-2">
