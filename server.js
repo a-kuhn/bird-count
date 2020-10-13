@@ -1,6 +1,8 @@
 
-const express = require("express");
-const cors = require("cors");
+const express = require("express"),
+  // cookieParser = require("cookie-parser"),
+  cors = require("cors");
+
 const port = 8000;
 const db_name = "birdCount";
 
@@ -11,9 +13,10 @@ require("./server/config/mongoose.config.js")(db_name);
 
 const app = express();
 
+// app.use(cookieParser());
 // Prevent CORS error when making request from react port 3000 to server port 8000
 // Error in chrome console: Access to XMLHttpRequest at...
-app.use(cors());
+app.use(cors({credentials: true, origin: "http://localhost:3000"}));
 
 // req.body undefined without this!
 app.use(express.json());
