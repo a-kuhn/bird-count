@@ -6,9 +6,8 @@ export default () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [pw, setPw] = useState("");
-  //! ***  add pwConfirm back in  ***
-  const [pwConfirm, setPwConfirm] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const [errors, setErrors] = useState(null);
 
@@ -20,20 +19,24 @@ export default () => {
         firstName,
         lastName,
         email,
-        password: pw,
-        //! *** add pwConfirm back in ***
+        password,
+        confirmPassword
     };
 
     //send post request to add newUser to db
     axios
-        .post('http://localhost:8000/api/users/new', newUser)
+        .post('http://localhost:8000/api/users/new', newUser, {withCredentials: true})
         .then(res => {
             console.log(res);
-            navigate('/main');
+            setFirstName("");
+            setLastName("");
+            setEmail("");
+            setPassword("");
+            setConfirmPassword("");
         })
         .catch(err => {
+            console.error(err);
             setErrors(err.response.data.errors);
-            console.error(err.response);
         })
   } 
 
@@ -53,6 +56,9 @@ export default () => {
                             className="form-control"
                             placeholder="first name"
                         ></input>
+                        {errors?.firstName && (
+                            <span className="error-message">{errors.firstName?.properties?.message}</span>
+                        )}
                     </div>
                     <div className="col-md-6">
                         <input
@@ -62,6 +68,9 @@ export default () => {
                             className="form-control"
                             placeholder="last name"
                         ></input>
+                        {errors?.lastName && (
+                            <span className="error-message">{errors.lastName?.properties?.message}</span>
+                        )}
                     </div>
                 </div>
                 <div className="form-row m-2 m-2">
@@ -72,25 +81,34 @@ export default () => {
                         className="form-control"
                         placeholder="email"
                     ></input>
+                    {errors?.email && (
+                        <span className="error-message">{errors.email?.properties?.message}</span>
+                    )}
                 </div>
                 <div className="form-row m-1">
                     <div className="col-md-6">
                         <input
-                            onChange={(e) => setPw(e.target.value)}
-                            value={pw}
+                            onChange={(e) => setPassword(e.target.value)}
+                            value={password}
                             type="text"
                             className="form-control"
                             placeholder="password"
                         ></input>
+                        {errors?.password && (
+                            <span className="error-message">{errors.password?.properties?.message}</span>
+                        )}
                     </div>
                     <div className="col-md-6">
                         <input
-                            onChange={(e) => setPwConfirm(e.target.value)}
-                            value={pwConfirm}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                            value={confirmPassword}
                             type="text"
                             className="form-control"
                             placeholder="confirm password"
                         ></input>
+                        {errors?.confirmPassword && (
+                            <span className="error-message">{errors.confirmPassword?.properties?.message}</span>
+                        )}
                     </div>
                 </div>
                 <div className="row justify-content-around">
