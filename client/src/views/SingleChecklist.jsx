@@ -1,8 +1,6 @@
 import React from 'react';
 import {Link, Router} from '@reach/router';
 
-import SearchForm from '../components/SearchForm';
-import DisplayResults from '../components/DisplayResults';
 
 export default () => {
 
@@ -12,12 +10,10 @@ export default () => {
                 <Link to="/logout" className="btn btn-outline-danger btn-lg m-4">Logout</Link>
                 <Link to="/home" className="btn btn-outline-primary btn-lg m-4">Home</Link>
             </div>
-            
-            <SearchForm />
 
-            <Router >
-                <DisplayResults path="results/:locale/:season"/>
-            </Router>
+            <div>
+                <p>placeholder to display single checklist as form to be updated by user clicking bird card to toggle hasBeenSeen property</p>
+            </div>
         </div>
     );
 }
