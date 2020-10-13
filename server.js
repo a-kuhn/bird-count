@@ -17,6 +17,7 @@ app.use(cors());
 
 // req.body undefined without this!
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 require("./server/routes/users.routes.js")(app);
 
