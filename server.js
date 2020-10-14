@@ -1,6 +1,6 @@
 require('dotenv').config();
 const express = require("express"),
-  // cookieParser = require("cookie-parser"),
+  cookieParser = require("cookie-parser"),
   cors = require("cors");
 
 
@@ -11,7 +11,7 @@ require("./server/config/mongoose.config.js")(process.env.DB_NAME);
 
 const app = express();
 
-// app.use(cookieParser());
+app.use(cookieParser());
 // Prevent CORS error when making request from react port 3000 to server port 8000
 // Error in chrome console: Access to XMLHttpRequest at...
 app.use(cors({credentials: true, origin: "http://localhost:3000"}));
