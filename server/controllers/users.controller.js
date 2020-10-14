@@ -18,7 +18,15 @@ module.exports = {
     // /api/users/new  --> createUser
     createUser(req, res) {
         User.create(req.body)
-            .then(newUser => res.json({newUser: newUser}))
+            .then(newUser => {
+                const userToken = jwt.sign({
+                    id: user._id
+                }, process.env.JWT_SECRET);
+
+                res
+                    .cookie("usertoken", userToken, secret, {httpOnly: true})
+                    .json({msg: "success!", user: user});
+            })
             .catch(err => res.status(400).json(err))
     },
     // /api/users/edit/:id  --> updateUser
