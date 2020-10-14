@@ -1,15 +1,13 @@
-
+require('dotenv').config();
 const express = require("express"),
   // cookieParser = require("cookie-parser"),
   cors = require("cors");
 
-const port = 8000;
-const db_name = "birdCount";
 
 // const mongooseConfigFunc = require("./config/mongoose.config");
 // mongooseConfigFunc(db_name);
 // shorthand of above
-require("./server/config/mongoose.config.js")(db_name);
+require("./server/config/mongoose.config.js")(process.env.DB_NAME);
 
 const app = express();
 
@@ -24,6 +22,6 @@ app.use(express.urlencoded({ extended: true }));
 
 require("./server/routes/users.routes.js")(app);
 
-app.listen(port, () =>
-  console.log(`Listening on port ${port} for REQuests to RESpond to.`),
+app.listen(process.env.DB_PORT, () =>
+  console.log(`Listening on port ${process.env.DB_PORT} for REQuests to RESpond to.`),
 );
