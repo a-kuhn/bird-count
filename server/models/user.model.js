@@ -1,7 +1,5 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
-require('mongoose-type-email');
-mongoose.SchemaTypes.Email.defaults.message = "Invalid email address."
 
 const UserSchema = new mongoose.Schema(
   {
@@ -15,12 +13,12 @@ const UserSchema = new mongoose.Schema(
       },
     // https://www.npmjs.com/package/mongoose-type-email
     email: {
-      type: mongoose.SchemaTypes.Email,
+      type: String,
       required: [true, "Email is required"],
-      // validate: {
-      //   validator: val => /^([\w-\.]+@([\w-]+\.)+[\w-]+)?$/.test(val),
-      //   message: "Please enter a valid email"
-      // }
+      validate: {
+        validator: val => /^([\w-\.]+@([\w-]+\.)+[\w-]+)?$/.test(val),
+        message: "Please enter a valid email"
+      }
     },
     password: {
       type: String,
