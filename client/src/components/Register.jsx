@@ -25,7 +25,7 @@ export default () => {
 
     //send post request to add newUser to db
     axios
-        .post('http://localhost:8080/api/users/new', newUser, {withCredentials: true})
+        .post('http://localhost:8888/api/users/new', newUser, {withCredentials: true})
         .then(res => {
             console.log(res);
             setFirstName("");
