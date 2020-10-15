@@ -11,41 +11,36 @@ export default () => {
 
   const [errors, setErrors] = useState(null);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const register = (event) => {
+    event.preventDefault();
 
-    //create newUser object from state
-    const newUser = {
-        firstName,
-        lastName,
-        email,
-        password,
-        confirmPassword
-    };
+    const newUser = { firstName, lastName, email, password, confirmPassword };
 
-    //send post request to add newUser to db
     axios
-        .post('http://localhost:8888/api/users/new', newUser, {withCredentials: true})
-        .then(res => {
-            console.log(res);
-            setFirstName("");
-            setLastName("");
-            setEmail("");
-            setPassword("");
-            setConfirmPassword("");
-            //TODO: switch this redirect to login newUser
-            navigate('/main')
-        })
-        .catch(err => {
-            console.error(err);
-            setErrors(err.response.data.errors);
-        })
-  } 
+      .post("http://localhost:8080/api/register", newUser, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.log(res);
+
+        setFirstName("");
+        setLastName("");
+        setEmail("");
+        setPassword("");
+        setConfirmPassword("");
+        navigate('/main')
+      })
+      .catch((err) => {
+        console.log(`error at post request ${err}`);
+
+        // setErrors(err.response.data.errors);
+      });
+  };
 
     return(
         <>
     {/* main container for form */}
-    <form className="col-5 dark-font " onSubmit={handleSubmit}>
+    <form className="col-5 dark-font " onSubmit={register}>
         <div className="form-row justify-content-around">
             <fieldset className="thick-border form-group">
             <legend className="w-auto mx-3 px-1">register</legend>
