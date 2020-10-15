@@ -80,15 +80,15 @@ module.exports = {
         .catch((err) => res.json(err));
     },
     // /api/users/edit/:id  --> updateUser
-    updateUser(req, res) {
-        User.findOneAndUpdate({_id: req.params.id}, req.body, {new:true})
-            .then(updatedUser => res.json({updatedUser: updatedUser}))
-            .catch(err => res.status(400).json(err))
-    },
+    // updateUser(req, res) {
+    //     User.findOneAndUpdate({_id: req.params.id}, req.body, {new:true})
+    //         .then(updatedUser => res.json({updatedUser: updatedUser}))
+    //         .catch(err => res.status(400).json(err))
+    // },
     // /api/users/delete/:id  --> deleteUser
-    deleteUser(req, res) {
-        User.findOneAndDelete({_id: req.params.id})
-            .then(result => res.json({result: result}))
-            .catch(err => res.json({message: "Something went wrong with deleteUser", error: err}))
-    }
+    // deleteUser(req, res) {
+    //     User.findOneAndDelete({_id: req.params.id})
+    //         .then(result => res.json({result: result}))
+    //         .catch(err => res.json({message: "Something went wrong with deleteUser", error: err}))
+    // }
 };
