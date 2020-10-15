@@ -8,7 +8,7 @@ module.exports = app => {
     //get single users
     app.get("/api/users/:id", UsersController.getSingleUser);
     //create new user
-    app.post("/api/users/new", UsersController.createUser);
+    app.post("/api/users/new", UsersController.register);
     //update existing user
     app.post("/api/users/update/:id", UsersController.updateUser);
     //delete single user
