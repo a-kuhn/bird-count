@@ -11,7 +11,6 @@ const UserSchema = new mongoose.Schema(
         type: String,
         required: [true, "Last name name is required"],
       },
-    // https://www.npmjs.com/package/mongoose-type-email
     email: {
       type: String,
       required: [true, "Email is required"],
