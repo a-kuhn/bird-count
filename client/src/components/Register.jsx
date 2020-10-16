@@ -16,25 +16,25 @@ export default () => {
 
     const newUser = { firstName, lastName, email, password, confirmPassword };
     console.log(`newUser: $${newUser}`);
-    // axios
-    //   .post("http://localhost:8000/api/register", newUser, {
-    //     withCredentials: true,
-    //   })
-    //   .then((res) => {
-    //     console.log(res);
+    axios
+      .post("http://localhost:8000/api/register", newUser, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.log(res);
 
-    //     setFirstName("");
-    //     setLastName("");
-    //     setEmail("");
-    //     setPassword("");
-    //     setConfirmPassword("");
-    //     navigate('/main')
-    //   })
-    //   .catch((err) => {
-    //     console.log(`error at post request ${err}`);
+        setFirstName("");
+        setLastName("");
+        setEmail("");
+        setPassword("");
+        setConfirmPassword("");
+        navigate('/main')
+      })
+      .catch((err) => {
+        console.log(`error at post request ${err}`);
 
-        // setErrors(err.response.data.errors);
-    //   });
+        setErrors(err.response.data.errors);
+      });
   };
 
     return(
