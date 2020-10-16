@@ -16,8 +16,9 @@ export default () => {
 
     return(
         <div className="container">
-            <button onClick={logout} className="btn btn-outline-danger btn-lg m-4">Logout</button>
             <Link to="/home" className="btn btn-outline-primary btn-lg m-4">Home</Link>
+            <Link to="/main" className="btn btn-outline-success btn-lg m-4">New List</Link>
+            <button onClick={logout} className="btn btn-outline-danger btn-lg m-4">Logout</button>
         </div>
     );
 };
