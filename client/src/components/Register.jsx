@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import {navigate} from '@reach/router';
+import {Link, navigate} from '@reach/router';
 
 export default () => {
   const [firstName, setFirstName] = useState("");
@@ -15,23 +15,23 @@ export default () => {
     event.preventDefault();
 
     const newUser = { firstName, lastName, email, password, confirmPassword };
+    console.log(`newUser: $${newUser}`);
+    // axios
+    //   .post("http://localhost:8000/api/register", newUser, {
+    //     withCredentials: true,
+    //   })
+    //   .then((res) => {
+    //     console.log(res);
 
-    axios
-      .post("http://localhost:8080/api/register", newUser, {
-        withCredentials: true,
-      })
-      .then((res) => {
-        console.log(res);
-
-        setFirstName("");
-        setLastName("");
-        setEmail("");
-        setPassword("");
-        setConfirmPassword("");
-        navigate('/main')
-      })
-      .catch((err) => {
-        console.log(`error at post request ${err}`);
+    //     setFirstName("");
+    //     setLastName("");
+    //     setEmail("");
+    //     setPassword("");
+    //     setConfirmPassword("");
+    //     navigate('/main')
+    //   })
+    //   .catch((err) => {
+    //     console.log(`error at post request ${err}`);
 
         // setErrors(err.response.data.errors);
       });
