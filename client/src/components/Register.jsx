@@ -34,7 +34,7 @@ export default () => {
     //     console.log(`error at post request ${err}`);
 
         // setErrors(err.response.data.errors);
-      });
+    //   });
   };
 
     return(
