@@ -6,11 +6,12 @@ export default () => {
     const logout = (e) => {
         e.preventDefault();
 
-        axios.post('http://localhost:8000/api/logout')
+        axios.post('http://localhost:8000/api/logout', {}, {withCredentials:true})
             .then(res => {
                 console.log(`res from NavBar logout: ${res}`);
                 navigate('/logout')
             })
+            .catch(console.log)
     };
 
     return(
