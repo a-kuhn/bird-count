@@ -28,8 +28,8 @@ export default () => {
         setEmail("");
         setPassword("");
         setConfirmPassword("");
-        
-        navigate('/main')
+
+        navigate('/home')
       })
       .catch((err) => {
         console.log(`error at post request ${err}`);
