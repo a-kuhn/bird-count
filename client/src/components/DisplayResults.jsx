@@ -69,7 +69,7 @@ export default (props) => {
                     .catch(err => setBirdListError(`an error occurred while trying to build your checklist:\n${err}`))
             })
             .catch(err=>setGeocodeError(`something's wrong with the location you're using:\n${err}`))
-    },[locality, season]);
+    },[]);
 
     // display filtered list of results
     return(
