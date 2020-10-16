@@ -14,7 +14,6 @@ function App() {
     <div className="App">
       <Router path="/">
         <LoginReg path="/">
-          <Register path=""/>
         </LoginReg>
         <Main path="main">
           <SearchForm path=""/>
