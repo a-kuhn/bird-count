@@ -28,6 +28,7 @@ export default () => {
         setEmail("");
         setPassword("");
         setConfirmPassword("");
+        
         navigate('/main')
       })
       .catch((err) => {
