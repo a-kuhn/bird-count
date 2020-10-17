@@ -23,10 +23,7 @@ export default (props) => {
         let filteredList = [];
         let uniqueBirds = [];
         fullList.forEach(b => {
-            if (!uniqueBirds.includes(b.taxon.preferred_common_name)){
-                // could create BirdSchema here>>
-                // filteredList.push(b);
-                
+            if (!uniqueBirds.includes(b.taxon.preferred_common_name)){                
                 filteredList.push({
                     photoUrl: b.taxon.default_photo.square_url,
                     commonName: b.taxon.preferred_common_name,
@@ -35,7 +32,8 @@ export default (props) => {
                     iNatOccUrl: b.uri,
                     observedOn: b.observed_on,
                     hasBeenSeen: false,
-                    notes: ""
+                    notes: "",
+                    shouldSave: true
                 });
                 
                 uniqueBirds.push(b.taxon.preferred_common_name);
@@ -86,13 +84,26 @@ export default (props) => {
             .catch(err=>setGeocodeError(`something's wrong with the location you're using:\n${err}`))
     },[]);
 
+    const keepBirdHandler = (idx) => {
+        birdList[idx].shouldSave = !birdList[idx].shouldSave;
+        setBirdList([...birdList]);
+    }
+
+    const saveChecklistHandler = (e) => {
+        e.preventDefault();
+        //TODO: build post request to save checklist to user's account
+        /*
+        filter through birdList, keep only birds with shouldSave == true, don't save that k:v
+        */
+    }
+
     // display filtered list of results
     return(
         <div>
             {geocodeError.length>0 && <p className="err-msg">{geocodeError}</p>}
             {birdListError.length>0 && <p className="err-msg">{birdListError}</p>}
 
-            <form>
+            <form onSubmit={saveChecklistHandler}>
                 <div className="d-inline-flex">
                     <h4 className="mr-4">Here's what we found:</h4>
                     <button className="btn btn-primary mb-4 ml-4">Save Checklist</button>
@@ -100,9 +111,15 @@ export default (props) => {
                 <br></br>
                 { birdList.map((bird, idx)=> {
                     return(
-                        <label className="hidden-checkbox">
-                            <input type="checkbox" value={bird} key={idx} checked/>
-                            <Bird bird={bird} key={idx} />
+                        <label className="hidden-checkbox" >
+                            <input 
+                                type="checkbox" 
+                                value={bird} 
+                                key={idx} 
+                                checked={bird.shouldSave}
+                                onChange={() => keepBirdHandler(idx)}
+                            />
+                            <Bird bird={bird} />
                         </label>
                     )
                 }
