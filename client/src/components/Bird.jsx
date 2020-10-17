@@ -23,7 +23,8 @@ export default ({bird}) => {
                 <a href={`${bird.uri}`}><span className="h6 dark-font" style={{fontSize: 14 + 'px'}}>last seen here on: </span>{formatted_date}</a>
             </div>
         </div> */}
-        <div className="card mb-3 mr-3 thick-border" style={{width: 15 + 'em'}}>
+        {/* to add glow around checked bird cards: className={bird.shouldSave ? 'div-glow' : null}  */}
+        <div className="card mb-3 mr-3 thick-border" style={{width: 20 + 'em'}} >
             <img 
                 src={bird.photoUrl} 
                 alt={`${bird.commonName}`}
