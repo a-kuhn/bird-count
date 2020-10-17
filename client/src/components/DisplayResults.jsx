@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Bird from './Bird';
+import { Link } from '@reach/router';
 
 export default (props) => {
     // to use orderBy in filterBirds():
@@ -23,12 +24,26 @@ export default (props) => {
         let uniqueBirds = [];
         fullList.forEach(b => {
             if (!uniqueBirds.includes(b.taxon.preferred_common_name)){
-                filteredList.push(b);
+                // could create BirdSchema here>>
+                // filteredList.push(b);
+                
+                filteredList.push({
+                    photoUrl: b.taxon.default_photo.square_url,
+                    commonName: b.taxon.preferred_common_name,
+                    latinName: b.taxon.name,
+                    wikipediaUrl: b.taxon.wikipedia_url,
+                    iNatOccUrl: b.uri,
+                    observedOn: b.observed_on,
+                    hasBeenSeen: false,
+                    notes: ""
+                });
+                
                 uniqueBirds.push(b.taxon.preferred_common_name);
             }
         });
         console.log(`starting to filter...`);
-        let orderedList = _.orderBy(filteredList, 'taxon.preferred_common_name');
+        let orderedList = _.orderBy(filteredList, 'commonName');
+        console.log(`orderedList: ${orderedList}`);
         return orderedList;
     }
     
