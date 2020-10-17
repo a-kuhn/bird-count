@@ -96,6 +96,8 @@ export default (props) => {
         /*
         filter through birdList, keep only birds with shouldSave == true, don't save that k:v
         */
+       let newChecklist = birdList.filter(b => b.shouldSave==true);
+       console.log(`newChecklist: ${newChecklist}`);
     }
 
     // display filtered list of results as a form to create new checklist
