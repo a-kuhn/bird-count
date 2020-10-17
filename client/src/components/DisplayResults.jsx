@@ -85,6 +85,7 @@ export default (props) => {
     },[]);
 
     const keepBirdHandler = (idx) => {
+        //? do i need to create a copy of birdList first?
         birdList[idx].shouldSave = !birdList[idx].shouldSave;
         setBirdList([...birdList]);
     }
@@ -97,7 +98,7 @@ export default (props) => {
         */
     }
 
-    // display filtered list of results
+    // display filtered list of results as a form to create new checklist
     return(
         <div>
             {geocodeError.length>0 && <p className="err-msg">{geocodeError}</p>}
