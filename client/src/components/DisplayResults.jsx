@@ -77,13 +77,23 @@ export default (props) => {
             {geocodeError.length>0 && <p className="err-msg">{geocodeError}</p>}
             {birdListError.length>0 && <p className="err-msg">{birdListError}</p>}
 
-            <h4>Here's what we found:</h4>
-            <div className="d-inline-flex flex-wrap justify-content-center">
-                { birdList.map((bird, idx)=>
-                <Bird bird={bird} key={idx} />
+            <form>
+                <div className="d-inline-flex">
+                    <h4 className="mr-4">Here's what we found:</h4>
+                    <button className="btn btn-primary mb-4 ml-4">Save Checklist</button>
+                </div>
+                <br></br>
+                { birdList.map((bird, idx)=> {
+                    return(
+                        <label className="hidden-checkbox">
+                            <input type="checkbox" value={bird} key={idx} checked/>
+                            <Bird bird={bird} key={idx} />
+                        </label>
+                    )
+                }
                 )}
-            </div>
-
+                <button className="btn btn-primary">Save Checklist</button>
+            </form>
         </div>
     );
 }
