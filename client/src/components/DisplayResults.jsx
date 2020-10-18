@@ -41,7 +41,6 @@ export default (props) => {
         });
         console.log(`starting to filter...`);
         let orderedList = _.orderBy(filteredList, 'commonName');
-        console.log(`orderedList: ${orderedList}`);
         return orderedList;
     }
     
@@ -84,25 +83,36 @@ export default (props) => {
             .catch(err=>setGeocodeError(`something's wrong with the location you're using:\n${err}`))
     },[]);
 
+    // toggle bird.shouldSave
     const keepBirdHandler = (idx) => {
-        //? do i need to create a copy of birdList first?
         birdList[idx].shouldSave = !birdList[idx].shouldSave;
         console.log(`switching ${idx}'s shouldSave to: ${birdList[idx].shouldSave}`);
         setBirdList([...birdList]);
     }
 
+    //build post request to save checklist to user's account
     const saveChecklistHandler = (e) => {
         e.preventDefault();
-        //TODO: build post request to save checklist to user's account
-        /*
-        filter through birdList, keep only birds with shouldSave == true, don't save that k:v
-        */
-    //    let newChecklist = birdList.filter(b => b.shouldSave==true);
-       let newChecklist = [...birdList];
-    //    console.log(`newChecklist: `);
-       newChecklist.forEach(bird => {
-           console.log(bird);
-       });
+        //filter through birdList, keep only birds with shouldSave == true, don't save that attribute
+        let newChecklist = [...birdList];
+        let toSave = newChecklist.map( b => {
+            if (b.shouldSave) {
+                let bird = {
+                    commonName: b.commonName,
+                    hasBeenSeen: b.hasBeenSeen,
+                    iNatOccUrl: b.iNatOccUrl,
+                    latinName: b.latinName,
+                    notes: b.notes,
+                    observedOn: b.observedOn,
+                    photoUrl: b.photoUrl,
+                    wikipediaUrl: b.wikipediaUrl
+                };
+                return bird;
+            }
+        });
+        toSave.forEach(bird => {
+            console.log(bird);
+        });
     }
 
     // display filtered list of results as a form to create new checklist
