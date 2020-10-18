@@ -95,7 +95,6 @@ export default (props) => {
         e.preventDefault();
         //filter through birdList, keep only birds with shouldSave == true, don't save that attribute
         let newChecklist = [...birdList];
-        console.log(`length of checklist: ${newChecklist.length}`)
         newChecklist = newChecklist.filter(b => b.shouldSave ===true);
         let toSave = newChecklist.map( b => {
             let bird = {
@@ -110,10 +109,7 @@ export default (props) => {
             };
             return bird;
         });
-        toSave.forEach(bird => {
-            console.log(bird);
-        });
-        console.log(`length of toSave: ${toSave.length}`);
+        
     }
 
     // display filtered list of results as a form to create new checklist
