@@ -87,6 +87,7 @@ export default (props) => {
     const keepBirdHandler = (idx) => {
         //? do i need to create a copy of birdList first?
         birdList[idx].shouldSave = !birdList[idx].shouldSave;
+        console.log(`switching ${idx}'s shouldSave to: ${birdList[idx].shouldSave}`);
         setBirdList([...birdList]);
     }
 
@@ -96,8 +97,12 @@ export default (props) => {
         /*
         filter through birdList, keep only birds with shouldSave == true, don't save that k:v
         */
-       let newChecklist = birdList.filter(b => b.shouldSave==true);
-       console.log(`newChecklist: ${newChecklist}`);
+    //    let newChecklist = birdList.filter(b => b.shouldSave==true);
+       let newChecklist = [...birdList];
+    //    console.log(`newChecklist: `);
+       newChecklist.forEach(bird => {
+           console.log(bird);
+       });
     }
 
     // display filtered list of results as a form to create new checklist
@@ -114,7 +119,8 @@ export default (props) => {
                 <br></br>
                 { birdList.map((bird, idx)=> {
                     return(
-                        <label className="hidden-checkbox" >
+                        // <label className="hidden-checkbox" >
+                        <label  >
                             <input 
                                 type="checkbox" 
                                 value={bird} 
