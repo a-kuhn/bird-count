@@ -1,8 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
-import ChecklistSchema from './checklist.model';
-
 const UserSchema = new mongoose.Schema(
   {
     firstName: {
@@ -28,7 +26,10 @@ const UserSchema = new mongoose.Schema(
       required: [true, "Password is required"],
       minlength: [8, "Password must be 8 characters or longer"],
     },
-    checklists: [ChecklistSchema]
+    checklists: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Checklist",
+    }]
   },
   { timestamps: true },
 );

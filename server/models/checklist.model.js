@@ -17,6 +17,10 @@ const ChecklistSchema = new mongoose.Schema(
       type: Array,
       minlength: [1, "Checklist must contain at least 1 bird."],
     },
+    creator: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    }
   },
   { timestamps: true },
 );
