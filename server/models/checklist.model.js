@@ -4,9 +4,11 @@ const ChecklistSchema = new mongoose.Schema(
   {
     location: {
       type: String,
+      default: "",
     },
     title: {
         type: String,
+        default: "[No Title]",
     },
     notes: {
       type: String,
