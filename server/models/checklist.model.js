@@ -7,8 +7,8 @@ const ChecklistSchema = new mongoose.Schema(
       default: "",
     },
     title: {
-        type: String,
-        default: "[No Title]",
+      type: String,
+      default: "[No Title]",
     },
     notes: {
       type: String,
