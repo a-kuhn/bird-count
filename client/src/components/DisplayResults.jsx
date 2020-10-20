@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Bird from './Bird';
-import { Link } from '@reach/router';
+import { navigate } from '@reach/router';
 
 export default (props) => {
     // to use orderBy in filterBirds():
@@ -94,9 +94,9 @@ export default (props) => {
     const saveChecklistHandler = (e) => {
         e.preventDefault();
         //filter through birdList, keep only birds with shouldSave == true, don't save that attribute
-        let newChecklist = [...birdList];
-        newChecklist = newChecklist.filter(b => b.shouldSave ===true);
-        let toSave = newChecklist.map( b => {
+        let birdsToSave = [...birdList];
+        birdsToSave = birdsToSave.filter(b => b.shouldSave ===true);
+        birdsToSave = birdsToSave.map( b => {
             let bird = {
                 commonName: b.commonName,
                 hasBeenSeen: b.hasBeenSeen,
@@ -109,7 +109,15 @@ export default (props) => {
             };
             return bird;
         });
-        
+        //create checklist object && send to db
+        let newChecklist = {birds: birdsToSave}
+        axios.post("http://localhost:8000/api/checklists/new", newChecklist, {withCredentials: true})
+            .then( res => {
+                console.log(`res from /api/checklists/new ${res}`);
+                //TODO change this to go to new checklist
+                navigate('/home')
+            })
+            .catch(err => console.log(`error with making new checklist: ${err}`))
     }
 
     // display filtered list of results as a form to create new checklist
