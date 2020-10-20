@@ -5,7 +5,7 @@ export default ({checklist}) => {
     const formatted_date = checklist.updatedAt.slice(0,10);
 
     return(
-        <div className="">
+        <div className="d-flex justify-content-between">
             <div className="card mb-3 mr-3 thick-border col-9 d-inline-flex" >
                 <div className="card-body justify-content-between d-flex">
                     <a 
@@ -29,10 +29,10 @@ export default ({checklist}) => {
                     </div>
                 </div>
             </div>
-            <div className="thick-border col-2 d-inline-flex ">
-                <a href={`#`}>
+            <div className="thick-border col-2 d-inline-flex mb-3 card">
+                <a href={`#`} className="stretched-link text-center btn btn-danger ">
                     {/* <img src={redTrashCan} className=""/> */}
-                    future delete button
+                    delete
                 </a>
             </div>
         </div>

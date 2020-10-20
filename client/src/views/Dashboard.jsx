@@ -32,7 +32,7 @@ export default () => {
             <NavBar/>
 
             <div>
-                <h2>Here's all your saved lists:</h2>
+                <h2 className="text-left">Here's all your saved lists:</h2>
             </div>
 
 
