@@ -124,7 +124,7 @@ export default (props) => {
         });
         
         //create checklist object && send to db, then update user's .checklists 
-        let newChecklist = {birds: birdsToSave}
+        let newChecklist = {birds: birdsToSave, creator: loggedInUser._id}
         axios.post("http://localhost:8000/api/checklists/new", newChecklist, {withCredentials: true})
             .then( res => {
                 const listId = res.data.newList._id;
