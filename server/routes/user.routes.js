@@ -13,4 +13,8 @@ module.exports = app => {
   // these routes have to be authenticated with JWT
   // GET LOGGED IN USER
   app.get("/api/users/loggedin", authenticate, userController.getLoggedInUser);
+  // GET ALL USER'S CHECKLISTS
+
+  // GET ONE OF USER'S CHECKLISTS
+
 };
