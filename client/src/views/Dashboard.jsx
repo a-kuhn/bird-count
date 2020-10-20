@@ -5,13 +5,23 @@ import axios from 'axios';
 import NavBar from '../components/NavBar';
 
 export default () => {
-    //TODO: axios -> get all checklists; display all checklists as links that navigate to /checklists/:id
-    const [checklists, setChecklists] = useState([]);
+    // GET LOGGED IN USER:
+    const [loggedInUser, setLoggedInUser] = useState({});
+    useEffect(() => {
+        axios.get("http://localhost:8000/api/users/loggedin", {withCredentials: true})
+            .then(user => {
+                console.log(`user: ${user.data.email}`)
+                setLoggedInUser(user.data);
+            })
+            .catch(err => {console.log(err)}); 
+    }, []);
 
+    // GET ALL USER'S CHECKLISTS:
+    const [checklists, setChecklists] = useState([]);
     useEffect(() => {
         axios.get("http://localhost:8000/api/users/checklists", {withCredentials: true})
             .then(res => {
-                console.log(`successfully loaded checklists!\n${res.data.checklists[0]._id}`);
+                console.log(`successfully loaded checklists!\n${res.data.checklists[0].title}`);
                 setChecklists(res.data.checklists);
             })
     }, []);
@@ -21,9 +31,8 @@ export default () => {
             <NavBar/>
 
             <div>
-                <h2>Here's all your saved lists!</h2>
+                <h2>Here's all your saved lists:</h2>
             </div>
-            {/* <div>checklists.checklists: {checklists.checklists}</div> */}
 
         </div>
     );
