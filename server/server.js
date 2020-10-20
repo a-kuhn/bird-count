@@ -13,6 +13,7 @@ app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(express.json());
 
 require("./routes/user.routes")(app);
+require("./routes/checklist.routes")(app);
 
 app.listen(process.env.DB_PORT, () =>
   console.log(`Listening on port ${process.env.DB_PORT}`)
