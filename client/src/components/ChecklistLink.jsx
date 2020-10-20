@@ -4,18 +4,30 @@ export default ({checklist}) => {
     const formatted_date = checklist.updatedAt.slice(0,10);
 
     return(
-        <>
-        <div className="card mb-3 mr-3 thick-border d-flex" style={{width: 20 + 'em'}} >
-            <div className="card-body text-center">
-                <a 
-                    href={`http://localhost:8000/checklists/${checklist._id}`}
-                    className="h5 py-3 stretched-link"
-                >{checklist.title}
-                </a>
-                <p className="font-italic" style={{fontSize: 14 + 'px'}}>location: <span>{checklist.location}</span></p>
-                <p><span className="h6 dark-font" style={{fontSize: 14 + 'px'}}>last updated: </span>{formatted_date}</p>
+        <div className="">
+            <div className="card mb-3 mr-3 thick-border col-9 d-inline-flex" >
+                <div className="card-body justify-content-between d-flex">
+                    <a 
+                        href={`http://localhost:8000/checklists/${checklist._id}`}
+                        className="h2 py-3 stretched-link d-inline-flex"
+                    >{checklist.title}
+                    </a>
+                    <p 
+                        className="font-bold d-inline-flex align-self-center" 
+                        style={{fontSize: 22 + 'px'}}
+                    >location: 
+                        <span>{checklist.location}</span>
+                    </p>
+                    <p 
+                        className="h6 dark-font d-inline-flex align-self-center mr-4" 
+                        style={{fontSize: 14 + 'px'}}
+                    >last updated: 
+                        <span>{formatted_date}</span>
+                    </p>
+                </div>
             </div>
+            <div className="thick-border col-2 d-inline-flex">future delete button</div>
         </div>
-        </>
     );
 }
+//style={{width: 20 + 'em'}} 
