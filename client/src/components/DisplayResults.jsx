@@ -3,9 +3,22 @@ import axios from 'axios';
 import Bird from './Bird';
 import { navigate } from '@reach/router';
 
+
 export default (props) => {
     // to use orderBy in filterBirds():
     var _ = require('agile');
+
+    const [loggedInUser, setLoggedInUser] = useState({});
+    
+    useEffect(() => {
+        axios.get("http://localhost:8000/api/users/loggedin", {withCredentials: true})
+            .then(user => {
+                console.log(`user: ${user.data.email}`)
+                setLoggedInUser(user.data);
+            })
+            .catch(err => {console.log(err)}); 
+    }, [])
+
     
     console.log(`loading results...\nprops: locale=${props.locale}, season=${props.season}`);
     // create variables for props passed down through Router 
@@ -109,14 +122,24 @@ export default (props) => {
             };
             return bird;
         });
-        //create checklist object && send to db
+        
+        //create checklist object && send to db, then update user's .checklists 
         let newChecklist = {birds: birdsToSave}
         axios.post("http://localhost:8000/api/checklists/new", newChecklist, {withCredentials: true})
             .then( res => {
-                console.log(`res from /api/checklists/new ${res}`);
-                //TODO change this to go to new checklist
-                navigate('/home')
+                const listId = res.data.newList._id;
+                const editedUser = {checklists: loggedInUser.checklists.concat(listId)};
+                // console.log(`res from /api/checklists/new ${res.data.newList._id}`);
+                axios.put("http://localhost:8000/api/users/edit", editedUser, {withCredentials: true})
+                    .then(res => {
+                        res.json({msg: `checklist._id successfully added to user's acct!`});
+                    })
+                    .catch(err => console.log(`error adding checklist to user's acct: ${err}`));
+                return listId;
             })
+            .then(newListId => {
+                console.log(`\n******\nchecklist created, added to user, navigating home\nnewListId: ${newListId}`);
+                navigate('/home');}) //TODO switch to '/checklists/${newListId}
             .catch(err => console.log(`error with making new checklist: ${err}`))
     }
 
