@@ -68,4 +68,11 @@ module.exports = {
       .catch((err) => res.json(err));
   },
 
+  getAllChecklists(req, res) {
+    const decodedJWT = jwt.decode(req.cookies.usertoken, {complete: true});
+
+    User.findById(decodedJWT.payload._id).populate("checklists")
+      .then(checklists => {console.log(`getAllChecklists res: ${checklists}`); res.json(checklists)})
+      .catch(err => res.json(err));
+  }
 };

@@ -15,10 +15,14 @@ module.exports = {
         checklist.save()
             .then(newList => {
                 console.log(`adding newChecklist to db:\n${newList}`);
-                User.findByIdAndUpdate(decodedJWT.payload._id, 
-                    { $push: {checklists: newList._id}},
-                    {new: true, useFindAndModify: false});
-                res.json(newList);
+                User.findOne({_id: decodedJWT.payload._id}) 
+                    .then(user => {
+                        console.log(`retrieving user ${decodedJWT.payload._id}\n${user}`);
+                        user.checklists.push(newList._id);
+                        return user.save();
+                    })
+                    .then(savedResult => res.json(savedResult))
+                    .catch(err => res.json(err));
             })
             .catch(err => res.json(err));
     },
