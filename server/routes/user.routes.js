@@ -8,7 +8,7 @@ module.exports = app => {
   // LOGIN
   app.post("/api/login", userController.login);
   // LOGOUT
-  app.post("/api/logout", userController.logout);
+  app.post("/api/logout", userController.logout2);
 
   // these routes have to be authenticated with JWT
   // GET LOGGED IN USER
