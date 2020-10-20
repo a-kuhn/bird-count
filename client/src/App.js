@@ -7,6 +7,7 @@ import Main from './views/Main';
 import Logout from './views/Logout';
 import DisplayResults from './components/DisplayResults';
 import SearchForm from './components/SearchForm';
+import SingleChecklist from './views/SingleChecklist';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
           <SearchForm path=""/>
           <DisplayResults path="results/:locale/:season"/>
         </Main>
+        <SingleChecklist path="checklists/:id"/>
         <Logout path="logout"/>
       </Router>
     </div>
