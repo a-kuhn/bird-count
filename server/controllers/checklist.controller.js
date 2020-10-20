@@ -4,7 +4,7 @@ const User = require('../models/user.model');
 const jwt = require("jsonwebtoken");
 
 module.exports = {
-    // create a new checklist && add newChecklist._id to user.checklists
+    // create a new checklist
     create(req, res) {
         console.log(`creating a new checklist!\n${req.body}`);
         const checklist = new Checklist(req.body);
@@ -15,14 +15,7 @@ module.exports = {
         checklist.save()
             .then(newList => {
                 console.log(`adding newChecklist to db:\n${newList}`);
-                User.findOne({_id: decodedJWT.payload._id}) 
-                    .then(user => {
-                        console.log(`retrieving user ${decodedJWT.payload._id}\n${user}\nadding checklist: ${newList._id}`);
-                        user.checklists.push(newList._id);
-                        return user.save();
-                    })
-                    .then(savedResult => res.json(savedResult))
-                    .catch(err => res.json(err));
+                res.json({ msg: "success!", newList: newList });
             })
             .catch(err => res.json(err));
     },
@@ -37,3 +30,4 @@ module.exports = {
 // User.findById(decodedJWT.payload._id)
 //     .then((user) => res.json(user))
 //     .catch((err) => res.json(err));
+
