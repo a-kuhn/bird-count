@@ -17,7 +17,7 @@ module.exports = {
                 console.log(`adding newChecklist to db:\n${newList}`);
                 User.findOne({_id: decodedJWT.payload._id}) 
                     .then(user => {
-                        console.log(`retrieving user ${decodedJWT.payload._id}\n${user}`);
+                        console.log(`retrieving user ${decodedJWT.payload._id}\n${user}\nadding checklist: ${newList._id}`);
                         user.checklists.push(newList._id);
                         return user.save();
                     })
