@@ -1,17 +1,30 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {Link, Router} from '@reach/router';
+import axios from 'axios';
 
 import NavBar from '../components/NavBar';
 
 export default () => {
+    //TODO: axios -> get all checklists; display all checklists as links that navigate to /checklists/:id
+    const [checklists, setChecklists] = useState([]);
+
+    useEffect(() => {
+        axios.get("http://localhost:8000/api/users/checklists", {withCredentials: true})
+            .then(res => {
+                console.log(`successfully loaded checklists!\n${res.data}`);
+                setChecklists(res);
+            })
+    }, []);
 
     return(
         <div className="container">
             <NavBar/>
 
             <div>
-                <p>placeholder for list of logged-in user's saved checklists</p>
+                <h2>Here's all your saved lists!</h2>
             </div>
+            {/* <div>checklists.checklists: {checklists.checklists}</div> */}
+
         </div>
     );
 }
