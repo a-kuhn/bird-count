@@ -25,6 +25,7 @@ export default () => {
                 console.log(`successfully loaded checklists!\n${res.data.checklists[0].title}`);
                 setChecklists(res.data.checklists);
             })
+            .catch(err => {console.log(err)}); 
     }, []);
 
     return(
