@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import redTrashCan from '../img/redTrashCan.png';
 
 export default ({checklist}) => {
     const formatted_date = checklist.updatedAt.slice(0,10);
@@ -28,7 +29,12 @@ export default ({checklist}) => {
                     </div>
                 </div>
             </div>
-            <div className="thick-border col-2 d-inline-flex">future delete button</div>
+            <div className="thick-border col-2 d-inline-flex ">
+                <a href={`#`}>
+                    {/* <img src={redTrashCan} className=""/> */}
+                    future delete button
+                </a>
+            </div>
         </div>
     );
 }
