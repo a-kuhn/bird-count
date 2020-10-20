@@ -11,8 +11,8 @@ export default () => {
     useEffect(() => {
         axios.get("http://localhost:8000/api/users/checklists", {withCredentials: true})
             .then(res => {
-                console.log(`successfully loaded checklists!\n${res.data}`);
-                setChecklists(res);
+                console.log(`successfully loaded checklists!\n${res.data.checklists[0]._id}`);
+                setChecklists(res.data.checklists);
             })
     }, []);
 
