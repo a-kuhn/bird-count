@@ -14,7 +14,6 @@ module.exports = app => {
   // GET LOGGED IN USER
   app.get("/api/users/loggedin", authenticate, userController.getLoggedInUser);
   // GET ALL USER'S CHECKLISTS
-
-  // GET ONE OF USER'S CHECKLISTS
+  app.get("/api/users/checklists", authenticate, userController.getAllChecklists);
 
 };
