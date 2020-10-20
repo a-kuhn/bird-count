@@ -9,7 +9,7 @@ export default ({checklist}) => {
             <div className="card mb-3 mr-3 thick-border col-9 d-inline-flex" >
                 <div className="card-body justify-content-between d-flex">
                     <a 
-                        href={`http://localhost:8000/checklists/${checklist._id}`}
+                        href={`/checklists/${checklist._id}`}
                         className="h2 py-3 stretched-link d-inline-flex col-8"
                     >{checklist.title}
                     </a>
