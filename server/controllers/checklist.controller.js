@@ -21,6 +21,10 @@ module.exports = {
                 res.json(newList);
             })
             .catch(err => res.json(err));
+    },
+    // get user's checklist to load into SingleChecklist view
+    getOne(req, res){
+        console.log(`retrieving checklist:\nreq.body: ${req.body}`);
     }
 };
 
