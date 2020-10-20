@@ -3,6 +3,7 @@ import {Link, Router} from '@reach/router';
 import axios from 'axios';
 
 import NavBar from '../components/NavBar';
+import ChecklistLink from '../components/ChecklistLink';
 
 export default () => {
     // GET LOGGED IN USER:
@@ -33,6 +34,15 @@ export default () => {
             <div>
                 <h2>Here's all your saved lists:</h2>
             </div>
+
+
+            { checklists.map((checklist, idx)=> {
+                    return(
+                        <ChecklistLink checklist={checklist} key={idx} className=""/>
+                    )
+                }
+                )}
+
 
         </div>
     );
