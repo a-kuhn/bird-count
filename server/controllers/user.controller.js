@@ -2,6 +2,7 @@ const User = require("../models/user.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
+
 // export an object that is full of methods
 module.exports = {
   register(req, res) {
@@ -75,5 +76,16 @@ module.exports = {
     User.findById(decodedJWT.payload._id).populate("checklists")
       .then(checklists => {console.log(`getAllChecklists res: ${checklists}`); res.json(checklists)})
       .catch(err => res.json(err));
-  }
+  },
+
+  update(req, res) {
+    const decodedJWT = jwt.decode(req.cookies.usertoken, {complete: true});
+
+    console.log(`req sent to userController.update: ${req.body.checklists}`);
+    User.findByIdAndUpdate(decodedJWT.payload._id, req.body, {runValidators: true, new: true})
+      .then(res => {
+        console.log(`updated user's checklist: ${res.data}`);
+      })
+      .catch(err => res.status(400).json(err));
+  },
 };
