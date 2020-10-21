@@ -35,7 +35,7 @@ export default (props) => {
     // create state for other checklist inputs:
     const [title, setTitle] = useState("");
     const [location, setLocation] = useState(decodeURIComponent(locality).split('+')); 
-    const [notes, setNotes] = useState("");
+    // const [notes, setNotes] = useState("");
 
     // filter results for unique taxa, then order by common name
     const filterBirds = (birds) => {
@@ -136,7 +136,7 @@ export default (props) => {
             birds: birdsToSave, 
             creator: loggedInUser._id, 
             location: location, 
-            notes: notes, 
+            // notes: notes, 
             title: title.length > 0 ? title : "[No Title]"};
         axios.post("http://localhost:8000/api/checklists/new", newChecklist, {withCredentials: true})
             .then( res => {
