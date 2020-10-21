@@ -1,18 +1,7 @@
-import { navigate } from '@reach/router';
-import axios from 'axios';
 import React from 'react';
-import redTrashCan from '../img/redTrashCan.png';
 
 export default ({checklist}) => {
     const formatted_date = checklist.updatedAt.slice(0,10);
-
-    const handleDelete = (deleteId) => {
-        axios.delete(`http://localhost:8000/api/checklists/${deleteId}`, {withCredentials: true})
-            .then(res => {
-                navigate('/home');
-            })
-            .catch(err => console.log(err));
-    };
 
     return(
         <div className="d-flex justify-content-between">
@@ -39,13 +28,6 @@ export default ({checklist}) => {
                     </div>
                 </div>
             </div>
-            <div className="thick-border col-2 d-inline-flex mb-3 card">
-                <button onClick={e => handleDelete(checklist._id)} className="stretched-link text-center btn btn-danger ">
-                    {/* <img src={redTrashCan} className=""/> */}
-                    delete
-                </button>
-            </div>
         </div>
     );
 }
-//style={{width: 20 + 'em'}} 

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Link, Router} from '@reach/router';
+import {navigate} from '@reach/router';
 import axios from 'axios';
 
 import NavBar from '../components/NavBar';
@@ -31,6 +31,17 @@ export default () => {
             .catch(err => {console.log(err)}); 
     }, []);
 
+    const handleDelete = (deleteId) => {
+        axios.delete(`http://localhost:8000/api/checklists/${deleteId}`, {withCredentials: true})
+            .then(res => {
+                const filteredLists = checklists.filter(list => {
+                    return list._id != deleteId;
+                });
+                setChecklists(filteredLists);
+            })
+            .catch(err => console.log(err));
+    };
+
     return(
         <div className="container">
             <NavBar/>
@@ -42,7 +53,15 @@ export default () => {
 
             { checklists.map((checklist, idx)=> {
                     return(
-                        <ChecklistLink checklist={checklist} key={idx} className=""/>
+                        <>
+                            <ChecklistLink checklist={checklist} key={idx} className=""/>
+                            <div className="thick-border col-2 d-inline-flex mb-3 card">
+                                <button onClick={e => handleDelete(checklist._id)} className="stretched-link text-center btn btn-danger ">
+                                    {/* <img src={redTrashCan} className=""/> */}
+                                    delete button                                
+                                </button>
+                            </div>
+                        </>
                     )
                 }
                 )}
