@@ -6,6 +6,7 @@ import BirdBinoculars from '../views/BirdBinoculars';
 
 
 export default (props) => {
+    console.log(`loading results...\nprops: locale=${props.locale}, season=${props.season}`);
     const [isLoaded, setIsLoaded] = useState(false);
     // to use orderBy in filterBirds():
     var _ = require('agile');
@@ -22,10 +23,10 @@ export default (props) => {
     }, [])
 
     
-    console.log(`loading results...\nprops: locale=${props.locale}, season=${props.season}`);
     // create variables for props passed down through Router 
     const locality = props.locale;
     const season = decodeURIComponent(props.season);
+    console.log(`decoded locality: ${decodeURIComponent(locality).split('+')}`);
 
     // create state for results of API calls:
     const [birdList, setBirdList] = useState([]);
@@ -33,7 +34,7 @@ export default (props) => {
     const [birdListError, setBirdListError] = useState('');
     // create state for other checklist inputs:
     const [title, setTitle] = useState("");
-    const [location, setLocation] = useState(""); //todo: fill this with locale input
+    const [location, setLocation] = useState(decodeURIComponent(locality).split('+')); 
     const [notes, setNotes] = useState("");
 
     // filter results for unique taxa, then order by common name
