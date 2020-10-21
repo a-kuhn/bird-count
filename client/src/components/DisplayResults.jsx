@@ -26,9 +26,7 @@ export default (props) => {
     // create variables for props passed down through Router 
     const locality = props.locale;
     const season = decodeURIComponent(props.season);
-    console.log(`decoded locality: ${(decodeURIComponent(locality))}`);
     let localeString = decodeURIComponent(locality).replace("+", ", ");
-    console.log(`localeString: ${localeString}`);
 
     // create state for results of API calls:
     const [birdList, setBirdList] = useState([]);
@@ -36,7 +34,7 @@ export default (props) => {
     const [birdListError, setBirdListError] = useState('');
     // create state for other checklist inputs:
     const [title, setTitle] = useState("");
-    const [location, setLocation] = useState(localeString); //todo: fill this with locale input
+    const [location, setLocation] = useState(localeString);
     const [notes, setNotes] = useState("");
 
     // filter results for unique taxa, then order by common name
@@ -109,7 +107,6 @@ export default (props) => {
     // toggle bird.shouldSave
     const keepBirdHandler = (idx) => {
         birdList[idx].shouldSave = !birdList[idx].shouldSave;
-        console.log(`switching ${idx}'s shouldSave to: ${birdList[idx].shouldSave}`);
         setBirdList([...birdList]);
     }
 
@@ -153,7 +150,6 @@ export default (props) => {
                 return listId;
             })
             .then(newListId => {
-                console.log(`\n******\nchecklist created, added to user, navigating home\nnewListId: ${newListId}`);
                 navigate('/home');}) //TODO switch to '/checklists/${newListId}
             .catch(err => console.log(`error with making new checklist: ${err}`))
     }
