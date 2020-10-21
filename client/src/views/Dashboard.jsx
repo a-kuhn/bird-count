@@ -34,9 +34,11 @@ export default () => {
     const handleDelete = (deleteId) => {
         axios.delete(`http://localhost:8000/api/checklists/${deleteId}`, {withCredentials: true})
             .then(res => {
+                console.log(`deleting checklist: ${deleteId}`);
                 const filteredLists = checklists.filter(list => {
                     return list._id != deleteId;
                 });
+                console.log(`filtered lists: ${filteredLists}`);
                 setChecklists(filteredLists);
             })
             .catch(err => console.log(err));
