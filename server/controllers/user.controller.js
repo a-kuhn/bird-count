@@ -10,7 +10,8 @@ module.exports = {
 
     user
       .save()
-      .then(() => {
+      .then((newUser) => {
+        console.log(`registered ${newUser.email}`);
         res.json({ msg: "success!", user: user });
       })
       .catch((err) => res.status(400).json(err));
@@ -26,13 +27,10 @@ module.exports = {
             .compare(req.body.password, user.password)
             .then((passwordIsValid) => {
               if (passwordIsValid) {
-                res
-                  .cookie(
-                    "usertoken",
-                    jwt.sign({ _id: user._id }, process.env.JWT_SECRET),
-                    {
-                      httpOnly: true,
-                    }
+                res.cookie(
+                  "usertoken",
+                  jwt.sign({ _id: user._id }, process.env.JWT_SECRET),
+                  {httpOnly: true,}
                   )
                   .json({ msg: "success!" });
               } else {
