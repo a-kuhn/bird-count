@@ -2,9 +2,11 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Bird from './Bird';
 import { navigate } from '@reach/router';
+import BirdBinoculars from '../views/BirdBinoculars';
 
 
 export default (props) => {
+    const [isLoaded, setIsLoaded] = useState(false);
     // to use orderBy in filterBirds():
     var _ = require('agile');
 
@@ -90,6 +92,7 @@ export default (props) => {
                         let birds = filterBirds(r.data.results); 
                         console.log(birds);
                         setBirdList(birds);
+                        setIsLoaded(true);
                     })
                     .catch(err => setBirdListError(`an error occurred while trying to build your checklist:\n${err}`))
             })
@@ -148,7 +151,8 @@ export default (props) => {
         <div>
             {geocodeError.length>0 && <p className="err-msg">{geocodeError}</p>}
             {birdListError.length>0 && <p className="err-msg">{birdListError}</p>}
-
+            {!isLoaded && <BirdBinoculars/>}
+            {isLoaded && 
             <form onSubmit={saveChecklistHandler}>
                 <div className="d-inline-flex">
                     <h4 className="mr-4">Here's what we found:</h4>
@@ -172,7 +176,7 @@ export default (props) => {
                 }
                 )}
                 <button className="btn btn-primary">Save Checklist</button>
-            </form>
+            </form>}
         </div>
     );
 }
