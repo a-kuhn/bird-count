@@ -20,7 +20,7 @@ function App() {
           <SearchForm path=""/>
           <DisplayResults path="results/:locale/:season"/>
         </Main>
-        <SingleChecklist path="checklists/:id"/>
+        <SingleChecklist path="/checklists/:checklistId"/>
         <Logout path="logout"/>
       </Router>
     </div>
