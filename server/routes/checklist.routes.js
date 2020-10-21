@@ -13,5 +13,5 @@ module.exports = app => {
   app.put("/api/checklists/:id", authenticate, checklistController.update);
   
 //delete checklist  /api/checklists/delete/:id
-
+  app.delete("/api/checklists/:id", authenticate, checklistController.delete);
 }

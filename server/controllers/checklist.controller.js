@@ -37,4 +37,12 @@ module.exports = {
           })
           .catch(err => res.status(400).json(err));
     },
+    // delete a checklist
+    delete(req, res){
+        console.log(`deleteing checklist: ${req.params.id}`);
+
+        Checklist.findByIdAndDelete(req.params.id)
+            .then(checklist => res.json(checklist))
+            .catch(err => res.json(err));
+    },
 };
