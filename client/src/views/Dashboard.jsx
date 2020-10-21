@@ -4,9 +4,11 @@ import axios from 'axios';
 
 import NavBar from '../components/NavBar';
 import ChecklistLink from '../components/ChecklistLink';
+import LoadingUpdates from './LoadingUpdates';
 
 export default () => {
     var _ = require('agile');
+    const [isLoaded, setIsLoaded] = useState(false);
     // GET LOGGED IN USER:
     const [loggedInUser, setLoggedInUser] = useState({});
     useEffect(() => {
@@ -27,11 +29,13 @@ export default () => {
                 let lists = res.data.checklists;
                 lists = _.orderBy(lists, '-updatedAt');
                 setChecklists(lists);
+                setIsLoaded(true);
             })
             .catch(err => {console.log(err)}); 
     }, []);
 
     const handleDelete = (deleteId) => {
+        setIsLoaded(false);
         axios.delete(`http://localhost:8000/api/checklists/${deleteId}`, {withCredentials: true})
             .then(res => {
                 console.log(`deleting checklist: ${deleteId}`);
@@ -40,6 +44,7 @@ export default () => {
                 });
                 console.log(`filtered lists: ${filteredLists}`);
                 setChecklists(filteredLists);
+                setIsLoaded(true);
             })
             .catch(err => console.log(err));
     };
@@ -51,9 +56,8 @@ export default () => {
             <div>
                 <h2 className="text-left">Here's all your saved lists:</h2>
             </div>
-
-
-            { checklists.map((checklist, idx)=> {
+            {!isLoaded && <LoadingUpdates />}
+            {isLoaded && checklists.map((checklist, idx)=> {
                     return(
                         <>
                             <ChecklistLink checklist={checklist} key={idx} className=""/>
