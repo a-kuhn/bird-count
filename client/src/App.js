@@ -18,7 +18,7 @@ function App() {
         <Dashboard path="/home"/>
         <Main path="main">
           <SearchForm path=""/>
-          <DisplayResults path="results/:locale/:season"/>
+          <DisplayResults path="/results/:locale/:season/:searchLocation?/:searchMunicipality?/:searchCounty?/:searchState?"/>
         </Main>
         <SingleChecklist path="/checklists/:checklistId"/>
         <Logout path="logout"/>
