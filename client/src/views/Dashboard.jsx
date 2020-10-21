@@ -59,15 +59,17 @@ export default () => {
             {!isLoaded && <LoadingUpdates />}
             {isLoaded && checklists.map((checklist, idx)=> {
                     return(
-                        <>
-                            <ChecklistLink checklist={checklist} key={idx} className=""/>
-                            <div className="thick-border col-2 d-inline-flex mb-3 card">
-                                <button onClick={e => handleDelete(checklist._id)} className="stretched-link text-center btn btn-danger ">
+                        <div className="d-flex ">
+                            <ChecklistLink checklist={checklist} key={idx}/>
+                            <div className="thick-border col-2 d-inline-flex p-3 mb-3 card align-self-stretch ">
+                                <button 
+                                    onClick={e => handleDelete(checklist._id)} 
+                                    className="stretched-link text-center btn btn-danger align-self-center">
                                     {/* <img src={redTrashCan} className=""/> */}
-                                    delete button                                
+                                    delete                                
                                 </button>
                             </div>
-                        </>
+                        </div>
                     )
                 }
                 )}
