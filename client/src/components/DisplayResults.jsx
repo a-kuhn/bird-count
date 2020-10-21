@@ -150,7 +150,7 @@ export default (props) => {
                 return listId;
             })
             .then(newListId => {
-                navigate('/home');}) //TODO switch to '/checklists/${newListId}
+                navigate(`/checklists/${newListId}`);})
             .catch(err => console.log(`error with making new checklist: ${err}`))
     }
 
