@@ -26,7 +26,9 @@ export default (props) => {
     // create variables for props passed down through Router 
     const locality = props.locale;
     const season = decodeURIComponent(props.season);
-    console.log(`decoded locality: ${decodeURIComponent(locality).split('+')}`);
+    console.log(`decoded locality: ${(decodeURIComponent(locality))}`);
+    let localeString = decodeURIComponent(locality).replace("+", ", ");
+    console.log(`localeString: ${localeString}`);
 
     // create state for results of API calls:
     const [birdList, setBirdList] = useState([]);
@@ -34,8 +36,8 @@ export default (props) => {
     const [birdListError, setBirdListError] = useState('');
     // create state for other checklist inputs:
     const [title, setTitle] = useState("");
-    const [location, setLocation] = useState(decodeURIComponent(locality).split('+')); 
-    // const [notes, setNotes] = useState("");
+    const [location, setLocation] = useState(localeString); //todo: fill this with locale input
+    const [notes, setNotes] = useState("");
 
     // filter results for unique taxa, then order by common name
     const filterBirds = (birds) => {
@@ -136,7 +138,7 @@ export default (props) => {
             birds: birdsToSave, 
             creator: loggedInUser._id, 
             location: location, 
-            // notes: notes, 
+            notes: notes, 
             title: title.length > 0 ? title : "[No Title]"};
         axios.post("http://localhost:8000/api/checklists/new", newChecklist, {withCredentials: true})
             .then( res => {
