@@ -31,6 +31,10 @@ export default (props) => {
     const [birdList, setBirdList] = useState([]);
     const [geocodeError, setGeocodeError] = useState('');
     const [birdListError, setBirdListError] = useState('');
+    // create state for other checklist inputs:
+    const [title, setTitle] = useState("");
+    const [location, setLocation] = useState(""); //todo: fill this with locale input
+    const [notes, setNotes] = useState("");
 
     // filter results for unique taxa, then order by common name
     const filterBirds = (birds) => {
@@ -127,7 +131,12 @@ export default (props) => {
         });
         
         //create checklist object && send to db, then update user's .checklists 
-        let newChecklist = {birds: birdsToSave, creator: loggedInUser._id}
+        let newChecklist = {
+            birds: birdsToSave, 
+            creator: loggedInUser._id, 
+            location: location, 
+            notes: notes, 
+            title: title.length > 0 ? title : "[No Title]"};
         axios.post("http://localhost:8000/api/checklists/new", newChecklist, {withCredentials: true})
             .then( res => {
                 const listId = res.data.newList._id;
@@ -152,13 +161,38 @@ export default (props) => {
             {geocodeError.length>0 && <p className="err-msg">{geocodeError}</p>}
             {birdListError.length>0 && <p className="err-msg">{birdListError}</p>}
             {!isLoaded && <BirdBinoculars/>}
+            <hr className="thick-border"/>
             {isLoaded && 
             <form onSubmit={saveChecklistHandler}>
-                <div className="d-inline-flex">
-                    <h4 className="mr-4">Here's what we found:</h4>
-                    <button className="btn btn-primary mb-4 ml-4">Save Checklist</button>
+                <div className="d-flex justify-content-between">
+                    <h2 className="ml-2 dark-font">Here's what we found:</h2>
+                    <button className="btn btn-primary btn-lg mr-4">Save Checklist</button>
                 </div>
                 <br></br>
+                <div className="form-row m-2">
+                    <div className="form-row col-6">
+                        <label className="text-left">Title:</label>
+                        <input
+                            name="title"
+                            onChange={(e) => setTitle(e.target.value)}
+                            value={title}
+                            type="text"
+                            className="form-control"
+                            placeholder="Do you want to name this list?"
+                        ></input>
+                    </div>
+                    <div className="form-row ml-2 col-6">
+                        <label>Location:</label>
+                        <input
+                            name="location"
+                            onChange={(e) => setLocation(e.target.value)}
+                            value={location}
+                            type="text"
+                            className="form-control"
+                            placeholder="Do you want to specify a location?"
+                        ></input>
+                    </div>
+                </div>
                 { birdList.map((bird, idx)=> {
                     return(
                         // <label className="hidden-checkbox" >
