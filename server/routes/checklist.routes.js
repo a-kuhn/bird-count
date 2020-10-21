@@ -10,7 +10,8 @@ module.exports = app => {
   app.get("/api/checklists/:id", authenticate, checklistController.getOne);
 
 //update checklist  /api/checklists/update/:id
-
+  app.put("/api/checklists/:id", authenticate, checklistController.update);
+  
 //delete checklist  /api/checklists/delete/:id
 
 }

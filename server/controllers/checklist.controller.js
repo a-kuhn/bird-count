@@ -26,13 +26,15 @@ module.exports = {
         Checklist.findById(req.params.id)
             .then((checklist) => res.json(checklist))
             .catch((err) => res.json(err));
-    }
+    },
+    // save updates
+    update(req, res) {
+        const decodedJWT = jwt.decode(req.cookies.usertoken, {complete: true});
+    
+        Checklist.findByIdAndUpdate(req.params.id, req.body, {runValidators: true, new: true})
+          .then(res => {
+            console.log(`updated checklist: ${res.data}`);
+          })
+          .catch(err => res.status(400).json(err));
+    },
 };
-
-
-// const decodedJWT = jwt.decode(req.cookies.usertoken, { complete: true });
-// const userId = decodedJWT.payload._id;
-// User.findById(userId)
-//     .then((user) => res.json(user))
-//     .catch((err) => res.json(err));
-

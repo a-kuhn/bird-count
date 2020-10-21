@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Link, Router} from '@reach/router';
+import {navigate} from '@reach/router';
 import axios from 'axios';
 
 import NavBar from '../components/NavBar';
@@ -29,10 +29,16 @@ export default ({checklistId}) => {
             .catch(err => console.log(err));
     },[]);
 
-    const saveEditsHandler = () => {
+    const saveEditsHandler = (e) => {
+        e.preventDefault();
         console.log(`save edits handler triggered...`);
-        // const {title, location, notes, birds} = editedChecklist;
-        // axios.put(`http://localhost:8000/api/checklists/${checklistId}`, editedChecklist)
+        //create object to send to db:
+        const editedChecklist = {title, location, notes, birds};
+        // send object to db to update record
+        axios.put(`http://localhost:8000/api/checklists/${checklistId}`, editedChecklist, {withCredentials: true})
+             .then(res => res.json({msg:`successfully updated checklist!`}))
+             .catch(err => console.log(err));
+        navigate('/home')
     };
 
     const hasBeenSeenHandler = (idx) => {
