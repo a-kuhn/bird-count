@@ -6,6 +6,7 @@ import NavBar from '../components/NavBar';
 import ChecklistLink from '../components/ChecklistLink';
 
 export default () => {
+    var _ = require('agile');
     // GET LOGGED IN USER:
     const [loggedInUser, setLoggedInUser] = useState({});
     useEffect(() => {
@@ -23,7 +24,9 @@ export default () => {
         axios.get("http://localhost:8000/api/users/checklists", {withCredentials: true})
             .then(res => {
                 console.log(`successfully loaded checklists!\n${res.data.checklists[0].title}`);
-                setChecklists(res.data.checklists);
+                let lists = res.data.checklists;
+                lists = _.orderBy(lists, '-updatedAt');
+                setChecklists(lists);
             })
             .catch(err => {console.log(err)}); 
     }, []);
