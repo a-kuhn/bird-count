@@ -3,8 +3,8 @@ import axios from 'axios';
 import {navigate} from '@reach/router';
 
 export default () => {
-  const [email, setEmail] = useState("pen@cil.com");
-  const [password, setPassword] = useState("asdfasdf");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const [errorMessage, setErrorMessage] = useState(null);
 
