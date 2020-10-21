@@ -11,8 +11,15 @@ module.exports = {
     user
       .save()
       .then((newUser) => {
-        console.log(`registered ${newUser.email}`);
-        res.json({ msg: "success!", user: user });
+        console.log(`****>> registered ${newUser.email}`);
+        //login newUser
+        res.cookie(
+          "usertoken",
+          jwt.sign({_id: newUser._id}, process.env.JWT_SECRET),
+          {httpOnly: true}
+          )
+          .json({msg: `logged in newUser: ${newUser.email}`})
+        // res.json({ msg: "success!", user: newUser });
       })
       .catch((err) => res.status(400).json(err));
   },
