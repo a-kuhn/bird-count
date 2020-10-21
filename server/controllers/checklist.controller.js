@@ -21,13 +21,18 @@ module.exports = {
     },
     // get user's checklist to load into SingleChecklist view
     getOne(req, res){
-        console.log(`retrieving checklist:\nreq.body: ${req.body}`);
+        console.log(`retrieving checklist:\nreq.body: ${req.params}`);
+        
+        Checklist.findById(req.params.id)
+            .then((checklist) => res.json(checklist))
+            .catch((err) => res.json(err));
     }
 };
 
 
 // const decodedJWT = jwt.decode(req.cookies.usertoken, { complete: true });
-// User.findById(decodedJWT.payload._id)
+// const userId = decodedJWT.payload._id;
+// User.findById(userId)
 //     .then((user) => res.json(user))
 //     .catch((err) => res.json(err));
 
