@@ -8,6 +8,7 @@ import BirdBinoculars from './BirdBinoculars';
 
 
 export default ({checklistId}) => {
+    var _ = require('agile');
     // isLoaded to prevent map of birds to run on undefined
     const [isLoaded, setIsLoaded] = useState(false);
     // GET CHECKLIST
@@ -23,7 +24,7 @@ export default ({checklistId}) => {
                 setTitle(res.data.title);
                 setLocation(res.data.location);
                 setNotes(res.data.notes);
-                setBirds(res.data.birds);
+                setBirds(_.orderBy(res.data.birds, ['hasBeenSeen', 'commonName']));
                 setIsLoaded(true);
             })
             .catch(err => console.log(err));
@@ -43,8 +44,10 @@ export default ({checklistId}) => {
 
     const hasBeenSeenHandler = (idx) => {
         console.log(`hasBeenSeenHandler triggered...`);
-        birds[idx].hasBeenSeen = !birds[idx].hasBeenSeen;
-        setBirds([...birds]);
+        let birdList = [...birds];
+        birdList[idx].hasBeenSeen = !birdList[idx].hasBeenSeen;
+        birdList = _.orderBy(birdList, ['hasBeenSeen', 'commonName']);
+        setBirds(birdList);
     };
 
     return(
