@@ -54,21 +54,19 @@ export default () => {
             <NavBar userName={loggedInUser.firstName}/>
 
             <div>
-                <h2 className="text-left">Here's all your saved lists:</h2>
+                <h2 className="text-left dark-font">Here's all your saved checklists:</h2>
             </div>
+            <h6 className="helper-msg-color text-left ml-1">Click on a list to view/update it.</h6>
             {!isLoaded && <LoadingUpdates />}
             {isLoaded && checklists.map((checklist, idx)=> {
                     return(
                         <div className="d-flex ">
                             <ChecklistLink checklist={checklist} key={idx}/>
-                            <div className="thick-border col-2 d-inline-flex p-3 mb-3 card align-self-stretch ">
                                 <button 
                                     onClick={e => handleDelete(checklist._id)} 
-                                    className="stretched-link text-center btn btn-danger align-self-center">
-                                    {/* <img src={redTrashCan} className=""/> */}
+                                    className="text-center btn btn-danger d-inline-flex align-self-center">
                                     delete                                
                                 </button>
-                            </div>
                         </div>
                     )
                 }

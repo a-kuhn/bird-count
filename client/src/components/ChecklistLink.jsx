@@ -15,14 +15,12 @@ export default ({checklist}) => {
                     <p 
                         className="font-bold d-inline-flex align-self-center" 
                         style={{fontSize: 22 + 'px'}}
-                    >location: 
-                        <span>{checklist.location}</span>
+                    >location:  {checklist.location}
                     </p>
                     <p 
                         className="h6 dark-font d-inline-flex align-self-center mr-4" 
                         style={{fontSize: 14 + 'px'}}
-                    >last updated: 
-                        <span>{formatted_date}</span>
+                    >last updated: {formatted_date}
                     </p>
                 </div>
             </div>
