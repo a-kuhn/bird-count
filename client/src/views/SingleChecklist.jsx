@@ -62,13 +62,12 @@ export default ({checklistId}) => {
                 {/* add Title, Location, Notes fields */}
                 {isLoaded && 
                 <form onSubmit={saveEditsHandler}>
-                    <div className="d-inline-flex">
-                        <button className="btn btn-primary mb-4 ml-4">Save Changes</button>
-                    </div>
+                    
                     <br></br>
                     <div className="form-row m-2">
+                        <div className="col-8"></div>
                         <div className="form-row col-6">
-                            <label className="text-left">Title:</label>
+                            <label className="h4 dark-font">Title:</label>
                             <input
                                 name="title"
                                 onChange={(e) => setTitle(e.target.value)}
@@ -79,7 +78,7 @@ export default ({checklistId}) => {
                             ></input>
                         </div>
                         <div className="form-row ml-2 col-6">
-                            <label>Location:</label>
+                            <label className="h4 dark-font">Location:</label>
                             <input
                                 name="location"
                                 onChange={(e) => setLocation(e.target.value)}
@@ -91,7 +90,7 @@ export default ({checklistId}) => {
                         </div>
                     </div>
                     <div className="form-row m-2">
-                        <label>Notes:</label>
+                        <label className="h4 dark-font">Notes:</label>
                         <input
                             name="notes"
                             onChange={(e) => setNotes(e.target.value)}
@@ -100,6 +99,9 @@ export default ({checklistId}) => {
                             className="form-control"
                             placeholder={notes}
                         ></input>
+                    </div>
+                    <div className="d-flex justify-content-end">
+                        <button className="btn btn-primary mb-4 btn-lg">Save Changes</button>
                     </div>
                     {birds.map((bird, idx)=> {
                         return(
@@ -117,7 +119,9 @@ export default ({checklistId}) => {
                         )
                     }
                     )}
-                    <button className="btn btn-primary">Save Changes</button>
+                    <div className="d-flex justify-content-center mb-4">
+                        <button className="btn btn-primary btn-lg mr-4">Save Changes</button>
+                    </div>
                 </form>}
             </div>
         </div>
