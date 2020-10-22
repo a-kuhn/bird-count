@@ -208,7 +208,9 @@ export default (props) => {
                     )
                 }
                 )}
-                <button className="btn btn-primary">Save Checklist</button>
+                <div className="d-flex justify-content-center mb-4">
+                    <button className="btn btn-primary btn-lg mr-4">Save Checklist</button>
+                </div>
             </form>}
         </div>
     );
