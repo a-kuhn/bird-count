@@ -21,7 +21,7 @@ export default () => {
     return(
         <div className="container">
             <NavBar userName={loggedInUser.firstName}/>
-            <h6 className="dark-font text-left ml-4">To create a new list, just fill out the form and click the button!</h6>
+            <h6 className="helper-msg-color text-left ml-4">To create a new list, just fill out the form and click the button!</h6>
             <SearchForm />
 
             <Router >
