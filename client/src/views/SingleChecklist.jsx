@@ -66,14 +66,12 @@ export default ({checklistId}) => {
             <NavBar userName={loggedInUser.firstName}/>
             {!isLoaded && <BirdBinoculars />}
             <div>
-                {/* create form & map over checklist like in DisplayResults */}
-                {/* add Title, Location, Notes fields */}
                 {isLoaded && 
                 <>
                 <h1 className="dark-font text-left">{title}</h1>
                 <h4 className="dark-font text-left">Last updated: <span className="dark-font h2">{lastUpdated}</span></h4>
+                <h6 className="helper-msg-color text-left">Check off the birds as you spot them. Make any other changes you'd like and click save when you're ready!</h6>
                 <form onSubmit={saveEditsHandler}>
-                    
                     <br></br>
                     <div className="form-row m-2">
                         <div className="col-8"></div>
