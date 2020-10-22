@@ -9,8 +9,17 @@ import BirdBinoculars from './BirdBinoculars';
 
 export default ({checklistId}) => {
     var _ = require('agile');
-    // isLoaded to prevent map of birds to run on undefined
     const [isLoaded, setIsLoaded] = useState(false);
+    // GET LOGGED IN USER:
+    const [loggedInUser, setLoggedInUser] = useState({});
+    useEffect(() => {
+        axios.get("http://localhost:8000/api/users/loggedin", {withCredentials: true})
+            .then(user => {
+                console.log(`user: ${user.data.email}`)
+                setLoggedInUser(user.data);
+            })
+            .catch(err => {console.log(err)}); 
+    }, []);
     // GET CHECKLIST
     const [title, setTitle] = useState("");
     const [location, setLocation] = useState("");
@@ -52,7 +61,7 @@ export default ({checklistId}) => {
 
     return(
         <div className="container">
-            <NavBar/>
+            <NavBar userName={loggedInUser.firstName}/>
             {/* while data is loading, display gif: */}
             {!isLoaded &&
             <BirdBinoculars />
