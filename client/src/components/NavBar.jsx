@@ -18,9 +18,9 @@ export default (props) => {
     };
 
     return(
-        <div className="d-flex">
-            <Link to="/home" className="btn btn-outline-primary btn-lg m-4">Home</Link>
-    <h2 className="dark-font mr-auto mt-4"> Hey, {userName}! </h2>
+        <div className="d-flex justify-content-around">
+            <Link to="/home" className="btn btn-outline-primary btn-lg mr-4 my-4">Home</Link>
+            <h2 className="dark-font mr-auto mt-4"> Hey, {userName}! </h2>
             <Link to="/main" className="btn btn-outline-success btn-lg m-4">New List</Link>
             <button onClick={logout} className="btn btn-outline-danger btn-lg m-4">Logout</button>
         </div>
