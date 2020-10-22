@@ -21,6 +21,7 @@ export default ({checklistId}) => {
             .catch(err => {console.log(err)}); 
     }, []);
     // GET CHECKLIST
+    const [lastUpdated, setLastUpdated] = useState();
     const [title, setTitle] = useState("");
     const [location, setLocation] = useState("");
     const [notes, setNotes] = useState("");
@@ -30,6 +31,7 @@ export default ({checklistId}) => {
         axios.get(`http://localhost:8000/api/checklists/${checklistId}`, {withCredentials: true})
             .then(res => {
                 console.log(`response from getOne checklist: ${res.data.birds[0].commonName}`);
+                setLastUpdated(res.data.updatedAt.slice(0,10));
                 setTitle(res.data.title);
                 setLocation(res.data.location);
                 setNotes(res.data.notes);
@@ -62,14 +64,14 @@ export default ({checklistId}) => {
     return(
         <div className="container">
             <NavBar userName={loggedInUser.firstName}/>
-            {/* while data is loading, display gif: */}
-            {!isLoaded &&
-            <BirdBinoculars />
-            }
+            {!isLoaded && <BirdBinoculars />}
             <div>
                 {/* create form & map over checklist like in DisplayResults */}
                 {/* add Title, Location, Notes fields */}
                 {isLoaded && 
+                <>
+                <h1 className="dark-font text-left">{title}</h1>
+                <h4 className="dark-font text-left">Last updated: <span className="dark-font h2">{lastUpdated}</span></h4>
                 <form onSubmit={saveEditsHandler}>
                     
                     <br></br>
@@ -131,7 +133,8 @@ export default ({checklistId}) => {
                     <div className="d-flex justify-content-center mb-4">
                         <button className="btn btn-primary btn-lg mr-4">Save Changes</button>
                     </div>
-                </form>}
+                </form>
+                </>}
             </div>
         </div>
     );
