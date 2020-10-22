@@ -12,7 +12,7 @@ export default (props) => {
         axios.post('http://localhost:8000/api/logout', {}, {withCredentials:true})
             .then(res => {
                 console.log(`res from NavBar logout: ${res.data.msg}`);
-                navigate('/logout')
+                navigate('/')
             })
             .catch(console.log)
     };
