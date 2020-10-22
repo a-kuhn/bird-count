@@ -1,29 +1,8 @@
 import React from 'react'
 
 export default ({bird}) => {
-    let formatted_date = bird.observedOn;
-
     return(
         <>
-        {/* <div className="card mb-3 mr-3 thick-border" style={{width: 15 + 'em'}}>
-            <img 
-                src={bird.taxon.default_photo.square_url} 
-                alt={`${bird.taxon.preferred_common_name}`}
-                className="card-img-top rounded-corners align-self-center mt-2"
-                style={{width: 80 + 'px'}}
-                >
-            </img>
-            <div className="card-body text-center">
-                <a 
-                    href={`${bird.taxon.wikipedia_url}`}
-                    className="h5 py-3"
-                >{bird.taxon.preferred_common_name}
-                </a>
-                <p className="font-italic">{bird.taxon.name}</p>
-                <a href={`${bird.uri}`}><span className="h6 dark-font" style={{fontSize: 14 + 'px'}}>last seen here on: </span>{formatted_date}</a>
-            </div>
-        </div> */}
-        {/* to add glow around checked bird cards: className={bird.shouldSave ? 'div-glow' : null}  */}
         <div className="card mb-3 mr-3 thick-border" style={{width: 20 + 'em'}} >
             <img 
                 src={bird.photoUrl} 
@@ -39,7 +18,7 @@ export default ({bird}) => {
                 >{bird.commonName}
                 </a>
                 <p className="font-italic">{bird.latinName}</p>
-                <a href={`${bird.iNatOccUrl}`}><span className="h6 dark-font" style={{fontSize: 14 + 'px'}}>last seen here on: </span>{formatted_date}</a>
+                <a href={`${bird.iNatOccUrl}`}><span className="h6 dark-font" style={{fontSize: 14 + 'px'}}>last seen here on: </span>{bird.observedOn}</a>
             </div>
         </div>
         </>
