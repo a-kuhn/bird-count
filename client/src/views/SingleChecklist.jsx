@@ -111,7 +111,7 @@ export default ({checklistId}) => {
                         ></textarea>
                     </div>
                     <div className="d-flex justify-content-end">
-                        <button className="btn btn-primary mb-4 btn-lg">Save Changes</button>
+                        <button className="btn btn-primary mb-4 mr-2 btn-lg">Save Changes</button>
                     </div>
                     {birds.map((bird, idx)=> {
                         return(
