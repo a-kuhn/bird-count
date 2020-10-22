@@ -100,14 +100,15 @@ export default ({checklistId}) => {
                     </div>
                     <div className="form-row m-2">
                         <label className="h4 dark-font">Notes:</label>
-                        <input
+                        <textarea
                             name="notes"
                             onChange={(e) => setNotes(e.target.value)}
                             value={notes}
                             type="text-area"
                             className="form-control"
                             placeholder={notes}
-                        ></input>
+                            rows={5}
+                        ></textarea>
                     </div>
                     <div className="d-flex justify-content-end">
                         <button className="btn btn-primary mb-4 btn-lg">Save Changes</button>
