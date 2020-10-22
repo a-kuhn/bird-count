@@ -167,6 +167,7 @@ export default (props) => {
                     <h2 className="ml-2 dark-font">Here's what we found:</h2>
                     <button className="btn btn-primary btn-lg mr-4">Save Checklist</button>
                 </div>
+                <h6 className="helper-msg-color text-left ml-2">To save this list, decide which birds to keep (&#x2611;) or not (&#x2610;), add a title if you want, then hit the save button.</h6>
                 <br></br>
                 <div className="form-row m-2">
                     <div className="form-row col-6">
