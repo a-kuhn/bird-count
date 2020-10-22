@@ -2,7 +2,10 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import {Link, navigate} from '@reach/router';
 
-export default () => {
+export default (props) => {
+    const [user, setUser] = useState(props.userName);
+    console.log();
+
     const logout = (e) => {
         e.preventDefault();
 
@@ -15,8 +18,9 @@ export default () => {
     };
 
     return(
-        <div className="container">
+        <div className="d-flex">
             <Link to="/home" className="btn btn-outline-primary btn-lg m-4">Home</Link>
+    <h2 className="dark-font mr-auto mt-4"> Hey, {user}**insert user name**! </h2>
             <Link to="/main" className="btn btn-outline-success btn-lg m-4">New List</Link>
             <button onClick={logout} className="btn btn-outline-danger btn-lg m-4">Logout</button>
         </div>
