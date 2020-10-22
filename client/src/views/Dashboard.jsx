@@ -51,7 +51,7 @@ export default () => {
 
     return(
         <div className="container">
-            <NavBar/>
+            <NavBar userName={loggedInUser.firstName}/>
 
             <div>
                 <h2 className="text-left">Here's all your saved lists:</h2>
