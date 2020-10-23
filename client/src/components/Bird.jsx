@@ -14,11 +14,12 @@ export default ({bird}) => {
             <div className="card-body text-center">
                 <a 
                     href={`${bird.wikipediaUrl}`}
+                    target="_blank"
                     className="h5 py-3"
                 >{bird.commonName}
                 </a>
                 <p className="font-italic">{bird.latinName}</p>
-                <a href={`${bird.iNatOccUrl}`}><span className="h6 dark-font" style={{fontSize: 14 + 'px'}}>last seen here on: </span>{bird.observedOn}</a>
+                <a href={`${bird.iNatOccUrl}`} target="_blank"><span className="h6 dark-font" style={{fontSize: 14 + 'px'}}>last seen here on: </span>{bird.observedOn}</a>
             </div>
         </div>
         </>
