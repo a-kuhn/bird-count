@@ -121,7 +121,7 @@ export default (props) => {
                 iNatOccUrl: b.iNatOccUrl,
                 latinName: b.latinName,
                 notes: b.notes,
-                observedOn: b.observedOn,
+                observedOn: "",
                 photoUrl: b.photoUrl,
                 wikipediaUrl: b.wikipediaUrl
             };
