@@ -16,7 +16,7 @@ export default (props) => {
     useEffect(() => {
         axios.get("http://localhost:8000/api/users/loggedin", {withCredentials: true})
             .then(user => {
-                console.log(`user: ${user.data.email}`)
+                console.log(`logged in user: ${user.data.email}`)
                 setLoggedInUser(user.data);
             })
             .catch(err => {console.log(err)}); 
@@ -39,6 +39,7 @@ export default (props) => {
 
     // filter results for unique taxa, then order by common name
     const filterBirds = (birds) => {
+        console.log(`starting to filter...`);
         let fullList = [...birds];
         let filteredList = [];
         let uniqueBirds = [];
@@ -55,11 +56,9 @@ export default (props) => {
                     notes: "",
                     shouldSave: true
                 });
-                
                 uniqueBirds.push(b.taxon.preferred_common_name);
             }
         });
-        console.log(`starting to filter...`);
         let orderedList = _.orderBy(filteredList, 'commonName');
         return orderedList;
     }
@@ -95,7 +94,6 @@ export default (props) => {
                 })
                     .then(r=>{
                         let birds = filterBirds(r.data.results); 
-                        console.log(birds);
                         setBirdList(birds);
                         setIsLoaded(true);
                     })
