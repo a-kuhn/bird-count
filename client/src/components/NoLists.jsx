@@ -1,8 +1,6 @@
 import React from 'react';
 
 export default () => {
-
-
     return(
         <>
             <h4 className="helper-msg-color">You haven't created any checklists yet! <br/>Click on the New List button to get started.</h4>

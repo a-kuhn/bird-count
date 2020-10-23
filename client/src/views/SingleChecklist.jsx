@@ -15,7 +15,7 @@ export default ({checklistId}) => {
     useEffect(() => {
         axios.get("http://localhost:8000/api/users/loggedin", {withCredentials: true})
             .then(user => {
-                console.log(`user: ${user.data.email}`)
+                console.log(`logged in user: ${user.data.email}`)
                 setLoggedInUser(user.data);
             })
             .catch(err => {console.log(err)}); 
@@ -30,7 +30,6 @@ export default ({checklistId}) => {
     useEffect(() => {
         axios.get(`http://localhost:8000/api/checklists/${checklistId}`, {withCredentials: true})
             .then(res => {
-                console.log(`response from getOne checklist: ${res.data.birds[0].commonName}`);
                 setLastUpdated(res.data.updatedAt.slice(0,10));
                 setTitle(res.data.title);
                 setLocation(res.data.location);
@@ -43,10 +42,7 @@ export default ({checklistId}) => {
 
     const saveEditsHandler = (e) => {
         e.preventDefault();
-        console.log(`save edits handler triggered...`);
-        //create object to send to db:
         const editedChecklist = {title, location, notes, birds};
-        // send object to db to update record
         axios.put(`http://localhost:8000/api/checklists/${checklistId}`, editedChecklist, {withCredentials: true})
              .then(res => res.json({msg:`successfully updated checklist!`}))
              .catch(err => console.log(err));

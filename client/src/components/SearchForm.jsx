@@ -31,8 +31,6 @@ export default () => {
     if (searchState.length>0){locale += `${searchState}`};
     locale = encodeURIComponent(locale);
 
-    console.log(`sending searchSeason: '${season}' and locale: '${locale}' up to Main.jsx`);
-
     // send locale and season to DisplayResults for API requests
     navigate(`/main/results/${locale}/${season}`);
   }

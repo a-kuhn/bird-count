@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import {navigate} from '@reach/router';
 import axios from 'axios';
 
 import NavBar from '../components/NavBar';
@@ -15,7 +14,7 @@ export default () => {
     useEffect(() => {
         axios.get("http://localhost:8000/api/users/loggedin", {withCredentials: true})
             .then(user => {
-                console.log(`user: ${user.data.email}`)
+                console.log(`logged in user: ${user.data.email}`)
                 setLoggedInUser(user.data);
             })
             .catch(err => {console.log(err)}); 
@@ -39,10 +38,7 @@ export default () => {
         axios.delete(`http://localhost:8000/api/checklists/${deleteId}`, {withCredentials: true})
             .then(res => {
                 console.log(`deleting checklist: ${deleteId}`);
-                const filteredLists = checklists.filter(list => {
-                    return list._id != deleteId;
-                });
-                console.log(`filtered lists: ${filteredLists}`);
+                const filteredLists = checklists.filter(list => {return list._id != deleteId;});
                 setChecklists(filteredLists);
                 setIsLoaded(true);
             })
@@ -74,8 +70,6 @@ export default () => {
                     )
                 }
                 ) : null}
-
-
         </div>
     );
 }

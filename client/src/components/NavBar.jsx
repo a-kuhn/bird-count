@@ -1,20 +1,15 @@
-import React, {useState} from 'react';
+import React from 'react';
 import axios from 'axios';
 import {Link, navigate} from '@reach/router';
 
 export default (props) => {
     const userName = props.userName;
-    console.log(userName);
 
     const logout = (e) => {
         e.preventDefault();
-
         axios.post('http://localhost:8000/api/logout', {}, {withCredentials:true})
-            .then(res => {
-                console.log(`res from NavBar logout: ${res.data.msg}`);
-                navigate('/')
-            })
-            .catch(console.log)
+            .then(res => {navigate('/')})
+            .catch(err => console.log(err));
     };
 
     return(

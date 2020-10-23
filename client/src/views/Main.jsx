@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Link, Router} from '@reach/router';
+import {Router} from '@reach/router';
 import axios from 'axios';
 
 import NavBar from '../components/NavBar';
@@ -12,7 +12,7 @@ export default () => {
     useEffect(() => {
         axios.get("http://localhost:8000/api/users/loggedin", {withCredentials: true})
             .then(user => {
-                console.log(`user: ${user.data.email}`)
+                console.log(`logged in user: ${user.data.email}`)
                 setLoggedInUser(user.data);
             })
             .catch(err => {console.log(err)}); 

@@ -6,7 +6,6 @@ import BirdBinoculars from '../views/BirdBinoculars';
 
 
 export default (props) => {
-    console.log(`loading results...\nprops: locale=${props.locale}, season=${props.season}`);
     const [isLoaded, setIsLoaded] = useState(false);
     // to use orderBy in filterBirds():
     var _ = require('agile');
@@ -22,7 +21,6 @@ export default (props) => {
             .catch(err => {console.log(err)}); 
     }, [])
 
-    
     // create variables for props passed down through Router 
     const locality = props.locale;
     const season = decodeURIComponent(props.season);
