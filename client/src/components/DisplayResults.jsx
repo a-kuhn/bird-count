@@ -99,9 +99,9 @@ export default (props) => {
                         setBirdList(birds);
                         setIsLoaded(true);
                     })
-                    .catch(err => setBirdListError(`an error occurred while trying to build your checklist:\n${err}`))
+                    .catch(err => setBirdListError(`An error occurred while trying to build your checklist. Please try again.`))
             })
-            .catch(err=>setGeocodeError(`something's wrong with the location you're using:\n${err}`))
+            .catch(err=>setGeocodeError(`Something's wrong with the location you're using. Try broadening your search.`))
     },[]);
 
     // toggle bird.shouldSave
@@ -157,8 +157,8 @@ export default (props) => {
     // display filtered list of results as a form to create new checklist
     return(
         <div>
-            {geocodeError.length>0 && <p className="err-msg">{geocodeError}</p>}
-            {birdListError.length>0 && <p className="err-msg">{birdListError}</p>}
+            {geocodeError.length>0 && <p className="error-message">{geocodeError}</p>}
+            {birdListError.length>0 && <p className="error-message">{birdListError}</p>}
             {!isLoaded && <BirdBinoculars/>}
             <hr className="thick-border"/>
             {isLoaded && 
