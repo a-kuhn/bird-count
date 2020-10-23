@@ -3,7 +3,7 @@ import {navigate} from '@reach/router';
 import axios from 'axios';
 
 import NavBar from '../components/NavBar';
-import Bird from '../components/Bird';
+import ChecklistBird from '../components/ChecklistBird';
 import BirdBinoculars from './BirdBinoculars';
 
 
@@ -126,7 +126,7 @@ export default ({checklistId}) => {
                                     checked={bird.hasBeenSeen}
                                     onChange={() => hasBeenSeenHandler(idx)}
                                 />
-                                <Bird bird={bird} />
+                                <ChecklistBird bird={bird} />
                             </label>
                         )
                     }

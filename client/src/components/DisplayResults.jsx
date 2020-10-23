@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import Bird from './Bird';
+import SearchBird from './SearchBird';
 import { navigate } from '@reach/router';
 import BirdBinoculars from '../views/BirdBinoculars';
 
@@ -200,7 +200,7 @@ export default (props) => {
                                 checked={bird.shouldSave}
                                 onChange={() => keepBirdHandler(idx)}
                             />
-                            <Bird bird={bird} />
+                            <SearchBird bird={bird} />
                         </label>
                     )
                 }
