@@ -57,6 +57,12 @@ export default ({checklistId}) => {
         console.log(`hasBeenSeenHandler triggered...`);
         let birdList = [...birds];
         birdList[idx].hasBeenSeen = !birdList[idx].hasBeenSeen;
+        if (birdList[idx].hasBeenSeen) {
+            let currDate = new Date();
+            let formattedDate = `${currDate.getFullYear()}-${currDate.getMonth()+1}-${currDate.getDate()}`;
+            birdList[idx].observedOn = formattedDate;
+        } 
+        else {birdList[idx].observedOn = ''};
         birdList = _.orderBy(birdList, ['hasBeenSeen', 'commonName']);
         setBirds(birdList);
     };
