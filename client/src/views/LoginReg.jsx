@@ -22,7 +22,7 @@ export default () => {
 
     return(
         <>
-        <h1 className="mt-4">Welcome to Encounter!</h1>
+        <h1 className="mt-4">Welcome to birddinggg!</h1>
         <h3>Just having a look around? </h3>
         {/* login as guest@bird.com  */}
         <form onSubmit={guestLogin}>
