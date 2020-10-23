@@ -5,6 +5,7 @@ import axios from 'axios';
 import NavBar from '../components/NavBar';
 import ChecklistLink from '../components/ChecklistLink';
 import LoadingUpdates from './LoadingUpdates';
+import NoLists from '../components/NoLists';
 
 export default () => {
     var _ = require('agile');
@@ -25,7 +26,6 @@ export default () => {
     useEffect(() => {
         axios.get("http://localhost:8000/api/users/checklists", {withCredentials: true})
             .then(res => {
-                console.log(`successfully loaded checklists!\n${res.data.checklists[0].title}`);
                 let lists = res.data.checklists;
                 lists = _.orderBy(lists, '-updatedAt');
                 setChecklists(lists);
@@ -53,12 +53,15 @@ export default () => {
         <div className="container">
             <NavBar userName={loggedInUser.firstName}/>
 
+            {!isLoaded && <LoadingUpdates />}
+            {(isLoaded && checklists.length > 0) ? 
             <div>
                 <h2 className="text-left dark-font">Here's all your saved checklists:</h2>
-            </div>
-            <h6 className="helper-msg-color text-left ml-1">Click on a list to view/update it.</h6>
-            {!isLoaded && <LoadingUpdates />}
-            {isLoaded && checklists.map((checklist, idx)=> {
+                <h6 className="helper-msg-color text-left ml-1">Click on a list to view/update it.</h6>
+            </div> : null}
+            {(isLoaded && checklists.length === 0) ? <NoLists/> : null}
+            {(isLoaded && checklists.length > 0) ? 
+            checklists.map((checklist, idx)=> {
                     return(
                         <div className="d-flex ">
                             <ChecklistLink checklist={checklist} key={idx}/>
@@ -70,7 +73,7 @@ export default () => {
                         </div>
                     )
                 }
-                )}
+                ) : null}
 
 
         </div>
