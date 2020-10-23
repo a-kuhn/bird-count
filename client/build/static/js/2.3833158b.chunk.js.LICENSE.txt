@@ -1,0 +1,41 @@
+/*
+object-assign
+(c) Sindre Sorhus
+@license MIT
+*/
+
+/**
+ * Like Underscore, but with zero callbacks and really more fun
+ * @version v0.0.2 - 2014-11-15 * @link https://github.com/a8m/agile
+ * @author Ariel Mashraki <ariel@mashraki.co.il>
+ * @license MIT License, http://www.opensource.org/licenses/MIT
+ */
+
+/** @license React v0.19.1
+ * scheduler.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @license React v16.13.1
+ * react-dom.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @license React v16.13.1
+ * react.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+// @license AngularJS#parse v1.3.0
